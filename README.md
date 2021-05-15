@@ -18,7 +18,7 @@ TIM's new cars' dashboards
         - routing
     - meca
         - 3d models
-
+        - Gerber
 - software
     - STM32CubeIDE project*  
  
