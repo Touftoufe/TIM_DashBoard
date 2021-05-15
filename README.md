@@ -18,10 +18,9 @@ TIM's new cars' dashboards
         - routing
     - meca
         - 3d models
-        - Gerber
+        - gerber
 - software
     - STM32CubeIDE project*  
- 
 - documentation
     - Block diagram
     - ICD (Interface control document)
