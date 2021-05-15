@@ -5,7 +5,7 @@ TIM's new cars' dashboards
 
 ## Organization tree
  
- hardware
+ - hardware 
     - doc
         - BOM
         - appnotes
@@ -19,10 +19,10 @@ TIM's new cars' dashboards
     - meca
         - 3d models
 
- software
+- software
     - STM32CubeIDE project*  
  
- documentation
+- documentation
     - Block diagram
     - ICD (Interface control document)
     - User Manual
