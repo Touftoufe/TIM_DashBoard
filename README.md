@@ -15,7 +15,7 @@ TIM's new cars' dashboards
         - inventhub git (hardware versions management) 
         - project library
         - schematic
-        - routing
+        - layout
     - meca
         - 3d models
         - gerber
@@ -24,6 +24,7 @@ TIM's new cars' dashboards
 - documentation
     - Block diagram
     - ICD (Interface control document)
-    - User Manual
+    - User manual
+    - Pinion diagram
 
 ##  
