@@ -47,6 +47,7 @@ TIM's new cars' dashboards
 
 ## Contributors 
 [Aouci Sofiane](https://www.linkedin.com/in/sofiane-aouci/) 
+
 [Jacquet Prince](http://www.jacquet.live)
 
 For Team : [TIM UPS INSA](http://www.timupsinsa.com) 
