@@ -27,4 +27,26 @@ TIM's new cars' dashboards
     - User manual
     - Pinion diagram
 
-##  
+##  Progress status 
+- [x] Organize the project
+- [x] Have a clear idea of what to make
+- [x] Test all hardware functions on prototype board
+- [x] Correct the mistakes on prototype board 
+- [ ] Write and update Errata (/hardware/doc/errata.md)
+- [ ] Start software
+        - [ ] epaper screen control 
+        - [ ] servo motor control
+        - [ ] speed limit input
+        - [ ] menu navigation
+        - [ ] *gpio* Lights control
+        - [ ] *gpio* ...
+- [ ] Document the [source code](/software) 
+- [ ] Pass the tests
+- [ ] write a User manual 
+- [ ] Insatll new dashboard in the car 
+
+## Contributors 
+[Aouci Sofiane](https://www.linkedin.com/in/sofiane-aouci/) 
+[Jacquet Prince](http://www.jacquet.live)
+
+For Team : [TIM UPS INSA](http://www.timupsinsa.com) 
