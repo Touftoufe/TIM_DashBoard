@@ -1,0 +1,1179 @@
+name: Carte_Volant_v21  # Put the name of diagram here
+description: Example diagram # Put a short description of the diagram here
+components:
+    +3V3:
+        description: TestPoint  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to +3V3
+                name: +3V3.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    Alim_12V1:
+        description: Jumper_NO_Small  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to POWER_SWITCH
+                name: Alim_12V1.2
+                description: ''
+                groups: []
+            '1': # Connected to +12V
+                name: Alim_12V1.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    Alim_5V1:
+        description: Jumper_NO_Small  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to +5V
+                name: Alim_5V1.2
+                description: ''
+                groups: []
+            '1': # Connected to Net-(Alim_5V1-Pad1)
+                name: Alim_5V1.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    BUSY:
+        description: TestPoint  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to BUSY
+                name: BUSY.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    C10:
+        description: '105'  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to PREVGH
+                name: C10.2
+                description: ''
+                groups: []
+            '1': # Connected to GND
+                name: C10.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    C11:
+        description: 100n  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to +5V
+                name: C11.2
+                description: ''
+                groups: []
+            '1': # Connected to GND
+                name: C11.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    C12:
+        description: '105'  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to VSL
+                name: C12.2
+                description: ''
+                groups: []
+            '1': # Connected to GND
+                name: C12.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    C13:
+        description: '105'  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to PREVGL
+                name: C13.2
+                description: ''
+                groups: []
+            '1': # Connected to GND
+                name: C13.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    C14:
+        description: '105'  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to VCOM
+                name: C14.2
+                description: ''
+                groups: []
+            '1': # Connected to GND
+                name: C14.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    C2:
+        description: '105'  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to VGL
+                name: C2.2
+                description: ''
+                groups: []
+            '1': # Connected to GND
+                name: C2.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    C3:
+        description: '105'  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to VGH
+                name: C3.2
+                description: ''
+                groups: []
+            '1': # Connected to GND
+                name: C3.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    C4:
+        description: 4.7u  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to +3V3
+                name: C4.2
+                description: ''
+                groups: []
+            '1': # Connected to GND
+                name: C4.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    C5:
+        description: 4.7u  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to Net-(C5-Pad2)
+                name: C5.2
+                description: ''
+                groups: []
+            '1': # Connected to Net-(C5-Pad1)
+                name: C5.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    C6:
+        description: '104'  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to +3V3
+                name: C6.2
+                description: ''
+                groups: []
+            '1': # Connected to GND
+                name: C6.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    C7:
+        description: '105'  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to VDD
+                name: C7.2
+                description: ''
+                groups: []
+            '1': # Connected to GND
+                name: C7.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    C8:
+        description: '105'  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to VPP
+                name: C8.2
+                description: ''
+                groups: []
+            '1': # Connected to GND
+                name: C8.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    C9:
+        description: '105'  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to VSH
+                name: C9.2
+                description: ''
+                groups: []
+            '1': # Connected to GND
+                name: C9.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    CS:
+        description: TestPoint  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to CS
+                name: CS.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    ConnToBareScreen:
+        description: FFC_PFC_Conn_01x24_0.5MM  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            MP:  # Connected to 
+                name: ConnToBareScreen.MP
+                description: ''
+                groups: []
+            '1': # Connected to HLT_CTL
+                name: ConnToBareScreen.1
+                description: ''
+                groups: []
+            '2': # Connected to GDR
+                name: ConnToBareScreen.2
+                description: ''
+                groups: []
+            '3': # Connected to RESE
+                name: ConnToBareScreen.3
+                description: ''
+                groups: []
+            '4': # Connected to VGL
+                name: ConnToBareScreen.4
+                description: ''
+                groups: []
+            '5': # Connected to VGH
+                name: ConnToBareScreen.5
+                description: ''
+                groups: []
+            '6': # Connected to TSCL
+                name: ConnToBareScreen.6
+                description: ''
+                groups: []
+            '7': # Connected to TSDA
+                name: ConnToBareScreen.7
+                description: ''
+                groups: []
+            '8': # Connected to BS
+                name: ConnToBareScreen.8
+                description: ''
+                groups: []
+            '9': # Connected to BUSY
+                name: ConnToBareScreen.9
+                description: ''
+                groups: []
+            '10': # Connected to RST
+                name: ConnToBareScreen.10
+                description: ''
+                groups: []
+            '11': # Connected to D_C
+                name: ConnToBareScreen.11
+                description: ''
+                groups: []
+            '12': # Connected to CS
+                name: ConnToBareScreen.12
+                description: ''
+                groups: []
+            '13': # Connected to SCLK
+                name: ConnToBareScreen.13
+                description: ''
+                groups: []
+            '14': # Connected to SDI
+                name: ConnToBareScreen.14
+                description: ''
+                groups: []
+            '15': # Connected to +3V3
+                name: ConnToBareScreen.15
+                description: ''
+                groups: []
+            '16': # Connected to +3V3
+                name: ConnToBareScreen.16
+                description: ''
+                groups: []
+            '17': # Connected to GND
+                name: ConnToBareScreen.17
+                description: ''
+                groups: []
+            '18': # Connected to VDD
+                name: ConnToBareScreen.18
+                description: ''
+                groups: []
+            '19': # Connected to VPP
+                name: ConnToBareScreen.19
+                description: ''
+                groups: []
+            '20': # Connected to VSH
+                name: ConnToBareScreen.20
+                description: ''
+                groups: []
+            '21': # Connected to PREVGH
+                name: ConnToBareScreen.21
+                description: ''
+                groups: []
+            '22': # Connected to VSL
+                name: ConnToBareScreen.22
+                description: ''
+                groups: []
+            '23': # Connected to PREVGL
+                name: ConnToBareScreen.23
+                description: ''
+                groups: []
+            '24': # Connected to VCOM
+                name: ConnToBareScreen.24
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    ConnToScreenHat1:
+        description: Conn_01x08  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            MP:  # Connected to 
+                name: ConnToScreenHat1.MP
+                description: ''
+                groups: []
+            '8': # Connected to BUSY
+                name: ConnToScreenHat1.8
+                description: ''
+                groups: []
+            '7': # Connected to RST
+                name: ConnToScreenHat1.7
+                description: ''
+                groups: []
+            '6': # Connected to D_C
+                name: ConnToScreenHat1.6
+                description: ''
+                groups: []
+            '5': # Connected to CS
+                name: ConnToScreenHat1.5
+                description: ''
+                groups: []
+            '4': # Connected to SCLK
+                name: ConnToScreenHat1.4
+                description: ''
+                groups: []
+            '3': # Connected to SDI
+                name: ConnToScreenHat1.3
+                description: ''
+                groups: []
+            '2': # Connected to GND
+                name: ConnToScreenHat1.2
+                description: ''
+                groups: []
+            '1': # Connected to +3V3
+                name: ConnToScreenHat1.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    D1:
+        description: MBR0530  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to GND
+                name: D1.1
+                description: ''
+                groups: []
+            '2': # Connected to Net-(C5-Pad2)
+                name: D1.2
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    D2:
+        description: MBR0530  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to PREVGL
+                name: D2.2
+                description: ''
+                groups: []
+            '1': # Connected to Net-(C5-Pad2)
+                name: D2.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    D3:
+        description: MBR0530  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to PREVGH
+                name: D3.1
+                description: ''
+                groups: []
+            '2': # Connected to Net-(C5-Pad1)
+                name: D3.2
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    D4:
+        description: D  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to +5V
+                name: D4.1
+                description: ''
+                groups: []
+            '2': # Connected to Net-(D4-Pad2)
+                name: D4.2
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    DC1:
+        description: TestPoint  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to D_C
+                name: DC1.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    G***:
+        description: LOGO  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins: {}
+        highlight: false # Make the component active
+    GND:
+        description: TestPoint  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to GND
+                name: GND.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    H1:
+        description: MountingHole  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to 
+                name: H1.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    H2:
+        description: MountingHole  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to 
+                name: H2.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    H3:
+        description: MountingHole  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to 
+                name: H3.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    J1:
+        description: RJ45_CANBUS  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            L:  # Connected to GND
+                name: J1.L
+                description: ''
+                groups: []
+            '8': # Connected to +12V
+                name: J1.8
+                description: ''
+                groups: []
+            '7': # Connected to GND
+                name: J1.7
+                description: ''
+                groups: []
+            '6': # Connected to Net-(J1-Pad6)
+                name: J1.6
+                description: ''
+                groups: []
+            '5': # Connected to GND
+                name: J1.5
+                description: ''
+                groups: []
+            '4': # Connected to Net-(J1-Pad4)
+                name: J1.4
+                description: ''
+                groups: []
+            '3': # Connected to GND
+                name: J1.3
+                description: ''
+                groups: []
+            '2': # Connected to CANL
+                name: J1.2
+                description: ''
+                groups: []
+            '1': # Connected to CANH
+                name: J1.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    J2:
+        description: Conn_01x03  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '3':  # Connected to GND
+                name: J2.3
+                description: ''
+                groups: []
+            '2': # Connected to GND
+                name: J2.2
+                description: ''
+                groups: []
+            '1': # Connected to +3V3
+                name: J2.1
+                description: ''
+                groups: []
+            '': # Connected to 
+                name: J2.
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    J3:
+        description: Conn_01x40  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to +12V
+                name: J3.1
+                description: ''
+                groups: []
+            '3': # Connected to Marche_AVNT-ARRIER
+                name: J3.3
+                description: ''
+                groups: []
+            '5': # Connected to accelerateur
+                name: J3.5
+                description: ''
+                groups: []
+            '7': # Connected to ENC_SpeedSelector_ok
+                name: J3.7
+                description: ''
+                groups: []
+            '9': # Connected to ENC_SpeedSelector_CCW
+                name: J3.9
+                description: ''
+                groups: []
+            '11': # Connected to LIGHTS_Back
+                name: J3.11
+                description: ''
+                groups: []
+            '13': # Connected to TURN_Sgnl_LEFT
+                name: J3.13
+                description: ''
+                groups: []
+            '15': # Connected to menu_up
+                name: J3.15
+                description: ''
+                groups: []
+            '17': # Connected to wiper_speed
+                name: J3.17
+                description: ''
+                groups: []
+            '19': # Connected to PB6
+                name: J3.19
+                description: ''
+                groups: []
+            '21': # Connected to PA6
+                name: J3.21
+                description: ''
+                groups: []
+            '23': # Connected to PA7
+                name: J3.23
+                description: ''
+                groups: []
+            '25': # Connected to PA8
+                name: J3.25
+                description: ''
+                groups: []
+            '27': # Connected to +5V
+                name: J3.27
+                description: ''
+                groups: []
+            '29': # Connected to GND
+                name: J3.29
+                description: ''
+                groups: []
+            '31': # Connected to +3V3
+                name: J3.31
+                description: ''
+                groups: []
+            '33': # Connected to PA2
+                name: J3.33
+                description: ''
+                groups: []
+            '35': # Connected to PB10
+                name: J3.35
+                description: ''
+                groups: []
+            '37': # Connected to PB12
+                name: J3.37
+                description: ''
+                groups: []
+            '39': # Connected to PC8
+                name: J3.39
+                description: ''
+                groups: []
+            '2': # Connected to POWER_SWITCH
+                name: J3.2
+                description: ''
+                groups: []
+            '4': # Connected to ADC_current_Selector
+                name: J3.4
+                description: ''
+                groups: []
+            '6': # Connected to BRAKE
+                name: J3.6
+                description: ''
+                groups: []
+            '8': # Connected to ENC_SpeedSelector_CW
+                name: J3.8
+                description: ''
+                groups: []
+            '10': # Connected to LIGHTS_Front
+                name: J3.10
+                description: ''
+                groups: []
+            '12': # Connected to TURN_Sgnl_RIGHT
+                name: J3.12
+                description: ''
+                groups: []
+            '14': # Connected to menu_ok
+                name: J3.14
+                description: ''
+                groups: []
+            '16': # Connected to menu_down
+                name: J3.16
+                description: ''
+                groups: []
+            '18': # Connected to PB5
+                name: J3.18
+                description: ''
+                groups: []
+            '20': # Connected to PB7
+                name: J3.20
+                description: ''
+                groups: []
+            '22': # Connected to PA5
+                name: J3.22
+                description: ''
+                groups: []
+            '24': # Connected to VBAT
+                name: J3.24
+                description: ''
+                groups: []
+            '26': # Connected to +5V
+                name: J3.26
+                description: ''
+                groups: []
+            '28': # Connected to GND
+                name: J3.28
+                description: ''
+                groups: []
+            '30': # Connected to +3V3
+                name: J3.30
+                description: ''
+                groups: []
+            '32': # Connected to PA0
+                name: J3.32
+                description: ''
+                groups: []
+            '34': # Connected to PA4
+                name: J3.34
+                description: ''
+                groups: []
+            '36': # Connected to PB11
+                name: J3.36
+                description: ''
+                groups: []
+            '38': # Connected to PB14
+                name: J3.38
+                description: ''
+                groups: []
+            '40': # Connected to 5VUSB
+                name: J3.40
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    J7:
+        description: Conn_01x03  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '3':  # Connected to Net-(J7-Pad3)
+                name: J7.3
+                description: ''
+                groups: []
+            '2': # Connected to +5V
+                name: J7.2
+                description: ''
+                groups: []
+            '1': # Connected to PWM_wiper
+                name: J7.1
+                description: ''
+                groups: []
+            '': # Connected to 
+                name: J7.
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    JP_BS1:
+        description: SolderJumper_3_Open  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '3':  # Connected to GND
+                name: JP_BS1.3
+                description: ''
+                groups: []
+            '2': # Connected to BS
+                name: JP_BS1.2
+                description: ''
+                groups: []
+            '1': # Connected to +3V3
+                name: JP_BS1.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    L1:
+        description: L_Core_Ferrite  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to +3V3
+                name: L1.1
+                description: ''
+                groups: []
+            '2': # Connected to Net-(C5-Pad1)
+                name: L1.2
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    PWM1:
+        description: TestPoint  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to PWM_wiper
+                name: PWM1.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    Q2:
+        description: FDN337N  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to Net-(Q2-Pad1)
+                name: Q2.1
+                description: ''
+                groups: []
+            '2': # Connected to GND
+                name: Q2.2
+                description: ''
+                groups: []
+            '3': # Connected to Net-(J7-Pad3)
+                name: Q2.3
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    R1:
+        description: 10k  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to GND
+                name: R1.2
+                description: ''
+                groups: []
+            '1': # Connected to Net-(R1-Pad1)
+                name: R1.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    R2:
+        description: 10k  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to +5V
+                name: R2.1
+                description: ''
+                groups: []
+            '2': # Connected to Net-(R1-Pad1)
+                name: R2.2
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    R3:
+        description: 47r  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to GND
+                name: R3.2
+                description: ''
+                groups: []
+            '1': # Connected to RESE
+                name: R3.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    R4:
+        description: 10k  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to GDR
+                name: R4.1
+                description: ''
+                groups: []
+            '2': # Connected to GND
+                name: R4.2
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    R5:
+        description: 10k  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to GND
+                name: R5.1
+                description: ''
+                groups: []
+            '2': # Connected to Net-(Q2-Pad1)
+                name: R5.2
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    R6:
+        description: '10'  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '2':  # Connected to power_wiper
+                name: R6.2
+                description: ''
+                groups: []
+            '1': # Connected to Net-(Q2-Pad1)
+                name: R6.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    R7:
+        description: 10k  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to Net-(D4-Pad2)
+                name: R7.1
+                description: ''
+                groups: []
+            '2': # Connected to Net-(J7-Pad3)
+                name: R7.2
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    RST:
+        description: TestPoint  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to RST
+                name: RST.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    SCLK:
+        description: TestPoint  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to SCLK
+                name: SCLK.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    SDI:
+        description: TestPoint  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to SDI
+                name: SDI.1
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    SI1308EDL-T1:
+        description: Si1304BDL  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to GDR
+                name: SI1308EDL-T1.1
+                description: ''
+                groups: []
+            '2': # Connected to RESE
+                name: SI1308EDL-T1.2
+                description: ''
+                groups: []
+            '3': # Connected to Net-(C5-Pad1)
+                name: SI1308EDL-T1.3
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    U1:
+        description: TSR_1-2450  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to POWER_SWITCH
+                name: U1.1
+                description: ''
+                groups: []
+            '2': # Connected to GND
+                name: U1.2
+                description: ''
+                groups: []
+            '3': # Connected to Net-(Alim_5V1-Pad1)
+                name: U1.3
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    U2:
+        description: STM32H103-OlimexBoard  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '27':  # Connected to +3V3
+                name: U2.27
+                description: ''
+                groups: []
+            '50': # Connected to power_wiper
+                name: U2.50
+                description: ''
+                groups: []
+            '48': # Connected to PC8
+                name: U2.48
+                description: ''
+                groups: []
+            '37': # Connected to PA4
+                name: U2.37
+                description: ''
+                groups: []
+            '34': # Connected to menu_up
+                name: U2.34
+                description: ''
+                groups: []
+            '47': # Connected to CS
+                name: U2.47
+                description: ''
+                groups: []
+            '45': # Connected to SDI
+                name: U2.45
+                description: ''
+                groups: []
+            '40': # Connected to PB10
+                name: U2.40
+                description: ''
+                groups: []
+            '36': # Connected to PWM_wiper
+                name: U2.36
+                description: ''
+                groups: []
+            '28': # Connected to menu_ok
+                name: U2.28
+                description: ''
+                groups: []
+            '29': # Connected to GND
+                name: U2.29
+                description: ''
+                groups: []
+            '49': # Connected to 5VUSB
+                name: U2.49
+                description: ''
+                groups: []
+            '33': # Connected to PA2
+                name: U2.33
+                description: ''
+                groups: []
+            '42': # Connected to SCLK
+                name: U2.42
+                description: ''
+                groups: []
+            '31': # Connected to +3V3
+                name: U2.31
+                description: ''
+                groups: []
+            '39': # Connected to BUSY
+                name: U2.39
+                description: ''
+                groups: []
+            '38': # Connected to RST
+                name: U2.38
+                description: ''
+                groups: []
+            '46': # Connected to D_C
+                name: U2.46
+                description: ''
+                groups: []
+            '41': # Connected to PB11
+                name: U2.41
+                description: ''
+                groups: []
+            '32': # Connected to GND
+                name: U2.32
+                description: ''
+                groups: []
+            '30': # Connected to PA0
+                name: U2.30
+                description: ''
+                groups: []
+            '44': # Connected to PB14
+                name: U2.44
+                description: ''
+                groups: []
+            '43': # Connected to PB12
+                name: U2.43
+                description: ''
+                groups: []
+            '35': # Connected to menu_down
+                name: U2.35
+                description: ''
+                groups: []
+            '52': # Connected to +5V
+                name: U2.52
+                description: ''
+                groups: []
+            '51': # Connected to GND
+                name: U2.51
+                description: ''
+                groups: []
+            '1': # Connected to CAN_Rx
+                name: U2.1
+                description: ''
+                groups: []
+            '24': # Connected to TURN_Sgnl_LEFT
+                name: U2.24
+                description: ''
+                groups: []
+            '22': # Connected to PA7
+                name: U2.22
+                description: ''
+                groups: []
+            '11': # Connected to ENC_SpeedSelector_ok
+                name: U2.11
+                description: ''
+                groups: []
+            '8': # Connected to ADC_current_Selector
+                name: U2.8
+                description: ''
+                groups: []
+            '21': # Connected to TURN_Sgnl_RIGHT
+                name: U2.21
+                description: ''
+                groups: []
+            '19': # Connected to LIGHTS_Front
+                name: U2.19
+                description: ''
+                groups: []
+            '14': # Connected to PA6
+                name: U2.14
+                description: ''
+                groups: []
+            '10': # Connected to BRAKE
+                name: U2.10
+                description: ''
+                groups: []
+            '2': # Connected to PA8
+                name: U2.2
+                description: ''
+                groups: []
+            '3': # Connected to CAN_Tx
+                name: U2.3
+                description: ''
+                groups: []
+            '23': # Connected to VBAT
+                name: U2.23
+                description: ''
+                groups: []
+            '7': # Connected to Marche_AVNT-ARRIER
+                name: U2.7
+                description: ''
+                groups: []
+            '16': # Connected to ENC_SpeedSelector_CW
+                name: U2.16
+                description: ''
+                groups: []
+            '5': # Connected to +3V3
+                name: U2.5
+                description: ''
+                groups: []
+            '13': # Connected to PB6
+                name: U2.13
+                description: ''
+                groups: []
+            '12': # Connected to PB5
+                name: U2.12
+                description: ''
+                groups: []
+            '20': # Connected to LIGHTS_Back
+                name: U2.20
+                description: ''
+                groups: []
+            '15': # Connected to PB7
+                name: U2.15
+                description: ''
+                groups: []
+            '6': # Connected to GND
+                name: U2.6
+                description: ''
+                groups: []
+            '4': # Connected to CAN_STBY
+                name: U2.4
+                description: ''
+                groups: []
+            '18': # Connected to PA5
+                name: U2.18
+                description: ''
+                groups: []
+            '17': # Connected to ENC_SpeedSelector_CCW
+                name: U2.17
+                description: ''
+                groups: []
+            '9': # Connected to accelerateur
+                name: U2.9
+                description: ''
+                groups: []
+            '26': # Connected to wiper_speed
+                name: U2.26
+                description: ''
+                groups: []
+            '25': # Connected to ST_RST
+                name: U2.25
+                description: ''
+                groups: []
+        highlight: false # Make the component active
+    U3:
+        description: MCP2561-E-SN  # Arbitrary comment
+        groups: [] # Specify component groups
+        pins:
+            '1':  # Connected to CAN_Tx
+                name: U3.1
+                description: ''
+                groups: []
+            '2': # Connected to GND
+                name: U3.2
+                description: ''
+                groups: []
+            '3': # Connected to +5V
+                name: U3.3
+                description: ''
+                groups: []
+            '4': # Connected to CAN_Rx
+                name: U3.4
+                description: ''
+                groups: []
+            '5': # Connected to Net-(R1-Pad1)
+                name: U3.5
+                description: ''
+                groups: []
+            '6': # Connected to CANL
+                name: U3.6
+                description: ''
+                groups: []
+            '7': # Connected to CANH
+                name: U3.7
+                description: ''
+                groups: []
+            '8': # Connected to CAN_STBY
+                name: U3.8
+                description: ''
+                groups: []
+        highlight: false # Make the component active
