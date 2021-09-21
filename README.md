@@ -12,7 +12,7 @@ TIM's new cars' dashboards
         - datasheets
         - errata
     - kicad
-        - inventhub git (hardware versions management) 
+        - [inventhub git](https://inventhub.io/c/elprincipito/TIM_DashBoard/tree/default) (hardware versions management) 
         - project library
         - schematic
         - layout

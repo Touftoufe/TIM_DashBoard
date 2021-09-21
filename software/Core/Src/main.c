@@ -19,9 +19,13 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "can.h"
+#include "tim.h"
+#include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "user_can.h"
 
 /* USER CODE END Includes */
 
@@ -42,6 +46,21 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+
+	extern CAN_HandleTypeDef hcan;
+	extern TIM_HandleTypeDef htim2;
+
+	uint8_t RxData[2]= {0,0};
+	uint32_t RxFifo = 1;
+	uint8_t CAN_Data[2] ={0,0};
+
+	CAN_RxHeaderTypeDef pCAN_RxHeader;
+	uint32_t pCAN_TxMailbox;
+
+	uint8_t state = 0x00;
+	uint8_t sens = 1;
+
+
 
 /* USER CODE END PV */
 
@@ -83,7 +102,59 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_CAN_Init();
+  MX_TIM2_Init();
+  MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
+
+  // --CAN
+
+   CAN_TxHeaderTypeDef pCAN_Header;
+   pCAN_Header.DLC   = 1; // 1 DLC is 8bits
+   pCAN_Header.StdId = AT07_BLINKERS_CMD;
+   pCAN_Header.ExtId = AT07_LIGHTS_CMD<<16;
+   pCAN_Header.IDE   = CAN_ID_EXT;
+   pCAN_Header.RTR	= CAN_RTR_DATA;
+   pCAN_Header.TransmitGlobalTime = DISABLE;
+
+
+
+
+
+   HAL_GPIO_WritePin(CAN_STBY_GPIO_Port, CAN_STBY_Pin, GPIO_PIN_RESET);
+
+   CAN_FilterTypeDef  sFilterConfig;
+
+    sFilterConfig.FilterBank = 0;
+    sFilterConfig.FilterMode = CAN_FILTERMODE_IDMASK;
+    sFilterConfig.FilterScale = CAN_FILTERSCALE_32BIT;
+    sFilterConfig.FilterIdHigh = 0x0;
+    sFilterConfig.FilterIdLow = 0x0;
+    sFilterConfig.FilterMaskIdHigh = 0x0;
+    sFilterConfig.FilterMaskIdLow = 0x0;
+    sFilterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+    sFilterConfig.FilterActivation = ENABLE;
+
+    sFilterConfig.SlaveStartFilterBank = 0;
+
+
+
+
+    HAL_CAN_ConfigFilter(&hcan, &sFilterConfig);      // Configure le filtre comme ci-dessus
+    HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING); // Active le mode interruption
+
+
+    HAL_CAN_Start(&hcan);
+    //HAL_TIM_Base_Start(&htim2);
+    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
+    HAL_TIM_Base_Start_IT(&htim4);
+
+
+    // --TIM2
+
+    TIM2->CCR4 = 100;
+
 
   /* USER CODE END 2 */
 
@@ -94,6 +165,18 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+
+	  HAL_GPIO_WritePin(wiper_power_GPIO_Port, wiper_power_Pin, 1);
+	  HAL_CAN_AddTxMessage(&hcan, &pCAN_Header, CAN_Data, &pCAN_TxMailbox);
+	  HAL_Delay(1000);
+
+
+
+
+
+
+
   }
   /* USER CODE END 3 */
 }
@@ -110,10 +193,13 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -122,18 +208,50 @@ void SystemClock_Config(void)
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }
 }
 
 /* USER CODE BEGIN 4 */
+
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan){
+	HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &pCAN_RxHeader, RxData);
+
+	if ((pCAN_RxHeader.ExtId)>>16 == 0x421)
+	{
+		CAN_Data[0]= (RxData[0]==1) ? 0 : 1;
+
+	}
+
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+
+		if (htim == &htim4) {
+			HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+
+			if(sens == 1){
+				TIM2->CCR4++;
+				if(TIM2->CCR4 >=200){sens=0; }
+			}
+			if(sens == 0){
+				TIM2->CCR4--;
+				if(TIM2->CCR4 <=100){sens=1; }
+			}
+
+		}
+
+}
+
+
 
 /* USER CODE END 4 */
 

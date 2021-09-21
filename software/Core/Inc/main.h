@@ -58,6 +58,16 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define BUT_Pin GPIO_PIN_0
+#define BUT_GPIO_Port GPIOA
+#define wiper_pwm_Pin GPIO_PIN_3
+#define wiper_pwm_GPIO_Port GPIOA
+#define wiper_power_Pin GPIO_PIN_9
+#define wiper_power_GPIO_Port GPIOC
+#define CAN_STBY_Pin GPIO_PIN_9
+#define CAN_STBY_GPIO_Port GPIOA
+#define LED_Pin GPIO_PIN_12
+#define LED_GPIO_Port GPIOC
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
