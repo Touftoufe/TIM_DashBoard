@@ -27,12 +27,30 @@ TIM's new cars' dashboards
     - User manual
     - Pinion diagram
 
+
+## 'Requirements' specification
+- Select speed limit
+- See set speed limit on screen
+- See actual speed on screen
+- Switch headlight on or off
+- Signal turn (left, right, switch off)
+- Klaxon
+- Wipe the windshield
+- See break light status on screen
+- Choose to drive forward or in reverse
+- Select wiper speed
+- Turn car on/Off
+- Configuration interface to choose between different modes
+
+
 ##  Progress status 
 - [x] Organize the project
 - [x] Have a clear idea of what to make
 - [x] Test all hardware functions on prototype board
 - [x] Correct the mistakes on prototype board 
-- [ ] Write and update Errata (/hardware/doc/errata.md)
+- [x] Write and update Errata (/hardware/doc/errata.md)
+- [ ] Complete the specifications
+- [ ] Translate the specifications into sequence diagram
 - [ ] Start software
         - [ ] epaper screen control 
         - [ ] servo motor control
@@ -44,6 +62,8 @@ TIM's new cars' dashboards
 - [ ] Pass the tests
 - [ ] write a User manual 
 - [ ] Insatll new dashboard in the car 
+
+
 
 ## Contributors 
 [Aouci Sofiane](https://www.linkedin.com/in/sofiane-aouci/) 

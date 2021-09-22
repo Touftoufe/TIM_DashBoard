@@ -1,6 +1,27 @@
 # Setup
 
-## Boards and tools use for the soft dev :
+
+## Requierements
+
+**Software**
+*for hardware devlopement* :
+-   kicad -v 5.1.10
+-
+*for software devlopement* : (packages / system / software used)
+-   stm32cubeide -v 1.6.1
+    build: 9958_20210326_1446 (UTC)
+    OS: Linux, v.5.10.42-1-MANJARO, x86_64 / gtk 3.24.29
+    Java version: 11.0.9.1
+-
+
+**Hardware**
+*Tools* :
+-   Microchip CAN BUS Analyser
+
+*Components used* :
+-   [See Hardware documentation](../../hardware/doc/bom.md)
+
+## Boards and tools use as setup for the soft dev :
  - speed board + headlight board + CAN Hub board + DashBoard Dev board
  - can Bus Analyzer (microchip) + power supply + ST link V2 + Manjaro Linux
 
@@ -133,7 +154,11 @@ To send CAN message we use `HAL_CAN_AddTxMessage(&hcan, &pCAN_Header, CAN_Data, 
 
 
 #### WIPER
-To control the wiper (a s90 Servo motor) we command the power (for power consumptions purposes) and the pwm (for speed control).
+To control the wiper (a s90 Servo motor) we command the power (for power consumptions purposes), a timer for the pwm (for position control) and another timer for speed control.
 The power control is simple GPIO output.
-The pwm for the wiper should be a a period of 20ms (50Hz) and a duty cycle of 5% to 11% (1 to 2ms)
+The pwm for the wiper should be a a period of 20ms (50Hz) and a duty cycle of 5% to 11% (1 to 2ms).
+we configure the pwm using this information.
+The minimum time to go from 0° to 90° is : `?`
+
+### The code architecture
 
