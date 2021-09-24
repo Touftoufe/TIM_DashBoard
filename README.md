@@ -29,18 +29,25 @@ TIM's new cars' dashboards
 
 
 ## 'Requirements' specification
-- Select speed limit
-- See set speed limit on screen
-- See actual speed on screen
+
+### Indispensable requirements
+- See `actual` speed on screen
 - Switch headlight on or off
 - Signal turn (left, right, switch off)
-- Klaxon
 - Wipe the windshield
 - See break light status on screen
-- Choose to drive forward or in reverse
 - Select wiper speed
+- Select power level
+
+### Optional requirements
+- Select speed limit
+- See set speed limit on screen
+- Choose to drive forward or in reverse
 - Turn car on/Off
 - Configuration interface to choose between different modes
+
+### Out of scope
+- Klaxon
 
 
 ##  Progress status 
@@ -49,15 +56,15 @@ TIM's new cars' dashboards
 - [x] Test all hardware functions on prototype board
 - [x] Correct the mistakes on prototype board 
 - [x] Write and update Errata (/hardware/doc/errata.md)
-- [ ] Complete the specifications
+- [x] Complete the specifications
 - [ ] Translate the specifications into sequence diagram
 - [ ] Start software
-        - [ ] epaper screen control 
-        - [ ] servo motor control
-        - [ ] speed limit input
-        - [ ] menu navigation
-        - [ ] *gpio* Lights control
-        - [ ] *gpio* ...
+    - [ ] epaper screen control
+    - [ ] servo motor control
+    - [ ] speed limit input
+    - [ ] menu navigation
+    - [ ] *gpio* Lights control
+    - [ ] *gpio* ...
 - [ ] Document the [source code](/software) 
 - [ ] Pass the tests
 - [ ] write a User manual 
