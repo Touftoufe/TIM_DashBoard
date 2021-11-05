@@ -13,7 +13,9 @@ C_SRCS += \
 ../Core/Src/syscalls.c \
 ../Core/Src/sysmem.c \
 ../Core/Src/system_stm32f1xx.c \
-../Core/Src/tim.c 
+../Core/Src/tim.c \
+../Core/Src/user_can_functs.c \
+../Core/Src/wiper.c 
 
 C_DEPS += \
 ./Core/Src/can.d \
@@ -24,7 +26,9 @@ C_DEPS += \
 ./Core/Src/syscalls.d \
 ./Core/Src/sysmem.d \
 ./Core/Src/system_stm32f1xx.d \
-./Core/Src/tim.d 
+./Core/Src/tim.d \
+./Core/Src/user_can_functs.d \
+./Core/Src/wiper.d 
 
 OBJS += \
 ./Core/Src/can.o \
@@ -35,7 +39,9 @@ OBJS += \
 ./Core/Src/syscalls.o \
 ./Core/Src/sysmem.o \
 ./Core/Src/system_stm32f1xx.o \
-./Core/Src/tim.o 
+./Core/Src/tim.o \
+./Core/Src/user_can_functs.o \
+./Core/Src/wiper.o 
 
 
 # Each subdirectory must supply rules for building sources it contributes

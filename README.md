@@ -58,7 +58,7 @@ TIM's new cars' dashboards
 - [x] Write and update Errata (/hardware/doc/errata.md)
 - [x] Complete the specifications
 - [ ] Translate the specifications into sequence diagram
-- [ ] Start software
+- [ ] Start software for different functions
     - [ ] epaper screen control
     - [ ] servo motor control
     - [ ] speed limit input

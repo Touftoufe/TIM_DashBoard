@@ -26,6 +26,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "user_can.h"
+#include "wiper.h"
+#include "user_can_functs.h"
 
 /* USER CODE END Includes */
 
@@ -47,19 +49,17 @@
 
 /* USER CODE BEGIN PV */
 
-	extern CAN_HandleTypeDef hcan;
-	extern TIM_HandleTypeDef htim2;
 
-	uint8_t RxData[2]= {0,0};
-	uint32_t RxFifo = 1;
-	uint8_t CAN_Data[2] ={0,0};
 
-	CAN_RxHeaderTypeDef pCAN_RxHeader;
-	uint32_t pCAN_TxMailbox;
 
-	uint8_t state = 0x00;
-	uint8_t sens = 1;
 
+uint8_t state = 0x00;
+uint8_t message[8]={0};
+
+
+extern uint8_t	RxData  ;
+extern uint32_t RxFifo 	;
+extern uint8_t	CAN_Data;
 
 
 /* USER CODE END PV */
@@ -106,54 +106,17 @@ int main(void)
   MX_CAN_Init();
   MX_TIM2_Init();
   MX_TIM4_Init();
+
   /* USER CODE BEGIN 2 */
 
-  // --CAN
-
-   CAN_TxHeaderTypeDef pCAN_Header;
-   pCAN_Header.DLC   = 1; // 1 DLC is 8bits
-   pCAN_Header.StdId = AT07_BLINKERS_CMD;
-   pCAN_Header.ExtId = AT07_LIGHTS_CMD<<16;
-   pCAN_Header.IDE   = CAN_ID_EXT;
-   pCAN_Header.RTR	= CAN_RTR_DATA;
-   pCAN_Header.TransmitGlobalTime = DISABLE;
+  CAN_receive_init();
 
 
+  //CAN_send_message(AT07_LIGHTS_CMD, AT07_LIGHTS_LENGTH, message );
+
+  wiper_start(wiper_speed_1);
 
 
-
-   HAL_GPIO_WritePin(CAN_STBY_GPIO_Port, CAN_STBY_Pin, GPIO_PIN_RESET);
-
-   CAN_FilterTypeDef  sFilterConfig;
-
-    sFilterConfig.FilterBank = 0;
-    sFilterConfig.FilterMode = CAN_FILTERMODE_IDMASK;
-    sFilterConfig.FilterScale = CAN_FILTERSCALE_32BIT;
-    sFilterConfig.FilterIdHigh = 0x0;
-    sFilterConfig.FilterIdLow = 0x0;
-    sFilterConfig.FilterMaskIdHigh = 0x0;
-    sFilterConfig.FilterMaskIdLow = 0x0;
-    sFilterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
-    sFilterConfig.FilterActivation = ENABLE;
-
-    sFilterConfig.SlaveStartFilterBank = 0;
-
-
-
-
-    HAL_CAN_ConfigFilter(&hcan, &sFilterConfig);      // Configure le filtre comme ci-dessus
-    HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING); // Active le mode interruption
-
-
-    HAL_CAN_Start(&hcan);
-    //HAL_TIM_Base_Start(&htim2);
-    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
-    HAL_TIM_Base_Start_IT(&htim4);
-
-
-    // --TIM2
-
-    TIM2->CCR4 = 100;
 
 
   /* USER CODE END 2 */
@@ -166,15 +129,11 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-
 	  HAL_GPIO_WritePin(wiper_power_GPIO_Port, wiper_power_Pin, 1);
-	  HAL_CAN_AddTxMessage(&hcan, &pCAN_Header, CAN_Data, &pCAN_TxMailbox);
+
+
+	  CAN_send_message(AT07_LIGHTS_CMD, AT07_LIGHTS_LENGTH, message);
 	  HAL_Delay(1000);
-
-
-
-
-
 
 
   }
@@ -221,35 +180,6 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan){
-	HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &pCAN_RxHeader, RxData);
-
-	if ((pCAN_RxHeader.ExtId)>>16 == 0x421)
-	{
-		CAN_Data[0]= (RxData[0]==1) ? 0 : 1;
-
-	}
-
-}
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-
-		if (htim == &htim4) {
-			HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-
-			if(sens == 1){
-				TIM2->CCR4++;
-				if(TIM2->CCR4 >=200){sens=0; }
-			}
-			if(sens == 0){
-				TIM2->CCR4--;
-				if(TIM2->CCR4 <=100){sens=1; }
-			}
-
-		}
-
-}
 
 
 

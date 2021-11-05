@@ -61,7 +61,7 @@
  - with sources files from github at  [can-utils github repo](https://github.com/linux-can/can-utils)
 
     **Usage**
- - `candump` : display, filter and log CAN data to files
+ - `candump` : display, filter and log CAN data to files (`candump  can0`)
  - `cansend` : send a single frame (`cansend  can0  04200000#01` to light up the headlight)
  - etc, see [can-utils github repo](https://github.com/linux-can/can-utils) for more options 
 
@@ -143,7 +143,7 @@ Example of a filter configuration
 
 
     HAL_CAN_ConfigFilter(&hcan, &sFilterConfig);      
-    HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING); // Activate the interupt mode
+    HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING); // Activate the interrupt mode
 
 
     HAL_CAN_Start(&hcan); 
