@@ -38,10 +38,10 @@ void CAN_receive_init(void){
 	sFilterConfig.FilterBank = 0;
 	sFilterConfig.FilterMode = CAN_FILTERMODE_IDMASK;
 	sFilterConfig.FilterScale = CAN_FILTERSCALE_32BIT;
-	sFilterConfig.FilterIdHigh = 0x0;
-	sFilterConfig.FilterIdLow = 0x0;
-	sFilterConfig.FilterMaskIdHigh = 0x0;
-	sFilterConfig.FilterMaskIdLow = 0x0;
+	sFilterConfig.FilterIdHigh = /*((0x04210031  << 5)  | (0x04210031  >> (32 - 5))) & 0xFFFF;*/(0x04210031 >> 13);
+	sFilterConfig.FilterIdLow = (0x04210031 & 0X1FFF) << 3;//(0x04210031 >> (11 - 3)) & 0xFFF8;//(0x04210031 >> 13);
+	sFilterConfig.FilterMaskIdHigh = 0xFFFF;//(((uint16_t)0x0FFFffFF  << 5)  | (0x04210031  >> (32 - 5))) & 0xFFFF;
+	sFilterConfig.FilterMaskIdLow =0x0000;// 0xFFF8;//(0x0FFFFFFF >> (11 - 3)) & 0xFFF8;
 	sFilterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
 	sFilterConfig.FilterActivation = ENABLE;
 
@@ -67,7 +67,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan){
 	extern uint8_t RxData[8];
 	HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &pCAN_RxHeader, RxData);
 
-	if ((pCAN_RxHeader.ExtId)>>16 == 0x421){
+	if ((pCAN_RxHeader.ExtId) == 0x4210031){
 		message[0]= (RxData[0]==1) ? 0 : 1;
 	}
 }

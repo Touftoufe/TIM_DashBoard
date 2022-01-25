@@ -60,6 +60,7 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define BUT_Pin GPIO_PIN_0
 #define BUT_GPIO_Port GPIOA
+#define BUT_EXTI_IRQn EXTI0_IRQn
 #define wiper_pwm_Pin GPIO_PIN_3
 #define wiper_pwm_GPIO_Port GPIOA
 #define wiper_power_Pin GPIO_PIN_9
@@ -77,5 +78,3 @@ void Error_Handler(void);
 #endif
 
 #endif /* __MAIN_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

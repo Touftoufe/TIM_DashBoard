@@ -10,8 +10,8 @@
 
 #include "wiper.h"
 
-extern TIM_HandleTypeDef htim2;
-extern TIM_HandleTypeDef htim4;
+extern TIM_HandleTypeDef htim2; //needed for specific period of pwm to control the servo motor
+extern TIM_HandleTypeDef htim4; // control by wiper.c to change wiper speed
 
 uint8_t wiper_direction = 1;
 
@@ -69,7 +69,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
 		if (htim == &htim4) {
 
-			HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+
 			switch (wiper_direction) {
 				case 1:
 					TIM2->CCR4=200;
@@ -91,4 +91,4 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
 		}
 
-}
+ 	 }

@@ -19,7 +19,9 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "adc.h"
 #include "can.h"
+#include "dma.h"
 #include "tim.h"
 #include "gpio.h"
 
@@ -53,13 +55,16 @@
 
 
 
-uint8_t state = 0x00;
-uint8_t message[8]={0};
+uint8_t state = 0x01;
+volatile int8_t message[8]={1};
 
 
 extern uint8_t	RxData  ;
 extern uint32_t RxFifo 	;
 extern uint8_t	CAN_Data;
+
+volatile int16_t ADC_Values[3] = {0,0,0};
+
 
 
 /* USER CODE END PV */
@@ -105,17 +110,27 @@ int main(void)
   MX_GPIO_Init();
   MX_CAN_Init();
   MX_TIM2_Init();
+  MX_DMA_Init();
+  MX_ADC1_Init();
   MX_TIM4_Init();
-
+  MX_TIM1_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
 
   CAN_receive_init();
 
 
-  //CAN_send_message(AT07_LIGHTS_CMD, AT07_LIGHTS_LENGTH, message );
+
+
 
   wiper_start(wiper_speed_1);
+  HAL_TIM_Base_Start_IT(&htim1);
+  //HAL_TIM_Base_Start_IT(&htim2);
+  HAL_TIM_Base_Start_IT(&htim3);
+  //HAL_TIM_Base_Start_IT(&htim4);
 
+
+  wiper_start(2);
 
 
 
@@ -130,12 +145,12 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
 	  HAL_GPIO_WritePin(wiper_power_GPIO_Port, wiper_power_Pin, 1);
+	  CAN_send_message(AT07_LIGHTS_CMD, AT07_LIGHTS_LENGTH, message );
 
-
-	  CAN_send_message(AT07_LIGHTS_CMD, AT07_LIGHTS_LENGTH, message);
+	  //CAN_send_message(AT07_LIGHTS_CMD, AT07_LIGHTS_LENGTH, message);
 	  HAL_Delay(1000);
 
-
+	  //message[0] =!message[0];
   }
   /* USER CODE END 3 */
 }
@@ -148,6 +163,7 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
@@ -173,6 +189,12 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
+  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV8;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
   }
@@ -217,4 +239,3 @@ void assert_failed(uint8_t *file, uint32_t line)
 }
 #endif /* USE_FULL_ASSERT */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

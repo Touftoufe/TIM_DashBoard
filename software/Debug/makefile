@@ -12,7 +12,6 @@ RM := rm -rf
 -include Drivers/STM32F1xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
--include subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -76,8 +75,8 @@ all: main-build
 main-build: TIM_DashBoard.elf secondary-outputs
 
 # Tool invocations
-TIM_DashBoard.elf: $(OBJS) $(USER_OBJS) /home/lepetitprince/Seafile/Organisation/TIM/Projet\ TIM/__Volant/TIM_DashBoard/software/STM32F103RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "TIM_DashBoard.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home/lepetitprince/Seafile/Organisation/TIM/Projet TIM/__Volant/TIM_DashBoard/software/STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TIM_DashBoard.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+TIM_DashBoard.elf: $(OBJS) $(USER_OBJS) /home/prince/Seafile/Organisation/TIM/Projet\ TIM/__Volant/TIM_DashBoard/software/STM32F103RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "TIM_DashBoard.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home/prince/Seafile/Organisation/TIM/Projet TIM/__Volant/TIM_DashBoard/software/STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TIM_DashBoard.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -98,7 +97,7 @@ TIM_DashBoard.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 
 # Other Targets
 clean:
-	-$(RM) $(OBJDUMP_LIST)$(C_UPPER_DEPS)$(S_DEPS)$(C_DEPS)$(OBJCOPY_BIN)$(CC_DEPS)$(SIZE_OUTPUT)$(C++_DEPS)$(EXECUTABLES)$(OBJS)$(CXX_DEPS)$(S_UPPER_DEPS)$(CPP_DEPS) TIM_DashBoard.elf
+	-$(RM) TIM_DashBoard.bin TIM_DashBoard.elf TIM_DashBoard.list default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
@@ -110,6 +109,6 @@ fail-specified-linker-script-missing:
 warn-no-linker-script-specified:
 	@echo 'Warning: No linker script specified. Check the linker settings in the build configuration.'
 
-.PHONY: all clean dependents fail-specified-linker-script-missing warn-no-linker-script-specified
+.PHONY: all clean dependents main-build fail-specified-linker-script-missing warn-no-linker-script-specified
 
 -include ../makefile.targets
