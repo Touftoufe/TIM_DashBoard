@@ -130,7 +130,7 @@ int main(void)
   //HAL_TIM_Base_Start_IT(&htim4);
 
 
-  wiper_start(2);
+  wiper_start(3);
 
 
 

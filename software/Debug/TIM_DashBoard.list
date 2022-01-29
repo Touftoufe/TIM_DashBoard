@@ -37,11 +37,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_macro  0001893c  00000000  00000000  00033fb8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00010dfd  00000000  00000000  0004c8f4  2**0
+ 17 .debug_line   00010dff  00000000  00000000  0004c8f4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0008c7ca  00000000  00000000  0005d6f1  2**0
+ 18 .debug_str    0008c7ca  00000000  00000000  0005d6f3  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000053  00000000  00000000  000e9ebb  2**0
+ 19 .comment      00000053  00000000  00000000  000e9ebd  2**0
                   CONTENTS, READONLY
  20 .debug_frame  0000381c  00000000  00000000  000e9f10  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
@@ -830,8 +830,8 @@ int main(void)
   //HAL_TIM_Base_Start_IT(&htim4);
 
 
-  wiper_start(2);
- 80005b2:	2002      	movs	r0, #2
+  wiper_start(3);
+ 80005b2:	2003      	movs	r0, #3
  80005b4:	f000 fc98 	bl	8000ee8 <wiper_start>
   {
     /* USER CODE END WHILE */
@@ -2601,9 +2601,9 @@ void wiper_start(wiper_speed the_wiper_speed){
  8000eec:	af00      	add	r7, sp, #0
  8000eee:	4603      	mov	r3, r0
  8000ef0:	71fb      	strb	r3, [r7, #7]
-
-	//turn timer 2 and 4 on
 	//turn timer pwm on
+
+
 
 	//HAL_TIM_Base_Start_IT(&htim2);
     HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
@@ -2669,13 +2669,13 @@ void wiper_start(wiper_speed the_wiper_speed){
  8000f52:	bf00      	nop
 	}
 
-	//switch wiper_power on
-    HAL_GPIO_WritePin(wiper_power_GPIO_Port, wiper_power_Pin, GPIO_PIN_SET);
+
+    //switch wiper_power on
+    	HAL_GPIO_WritePin(wiper_power_GPIO_Port, wiper_power_Pin, GPIO_PIN_SET);
  8000f54:	2201      	movs	r2, #1
  8000f56:	f44f 7100 	mov.w	r1, #512	; 0x200
  8000f5a:	4805      	ldr	r0, [pc, #20]	; (8000f70 <wiper_start+0x88>)
  8000f5c:	f002 f851 	bl	8003002 <HAL_GPIO_WritePin>
-
 
 
 }
