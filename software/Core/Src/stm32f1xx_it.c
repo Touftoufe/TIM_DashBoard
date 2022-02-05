@@ -217,15 +217,15 @@ void SysTick_Handler(void)
 void EXTI0_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI0_IRQn 0 */
-	if (HAL_GPIO_ReadPin(BUT_GPIO_Port, BUT_Pin)==GPIO_PIN_RESET){
-		enable_motor_CMD = 1;
+	//if (HAL_GPIO_ReadPin(BUT_GPIO_Port, BUT_Pin)==GPIO_PIN_RESET){
+	//	enable_motor_CMD = 1;
 
-	} else if (HAL_GPIO_ReadPin(BUT_GPIO_Port, BUT_Pin)==GPIO_PIN_SET) {
-		enable_motor_CMD = 0;
-		TxMotorCMD=0;
-		CAN_send_message(AT07_ELEC_MOTOR_CMD,1,&TxMotorCMD);
+	//} else if (HAL_GPIO_ReadPin(BUT_GPIO_Port, BUT_Pin)==GPIO_PIN_SET) {
+	//	enable_motor_CMD = 0;
+	//	TxMotorCMD=0;
+	//	CAN_send_message(AT07_ELEC_MOTOR_CMD,1,&TxMotorCMD);
 
-	}
+	//}
 
   /* USER CODE END EXTI0_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(BUT_Pin);
@@ -330,10 +330,10 @@ void TIM1_BRK_IRQHandler(void)
 void TIM1_UP_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM1_UP_IRQn 0 */
-	  if( enable_motor_CMD ){
-		  TxMotorCMD=1;
-		  CAN_send_message(AT07_ELEC_MOTOR_CMD,1,&TxMotorCMD);
-	  }
+	  //if( enable_motor_CMD ){
+	//	  TxMotorCMD=1;
+		//  CAN_send_message(AT07_ELEC_MOTOR_CMD,1,&TxMotorCMD);
+	  //}
   /* USER CODE END TIM1_UP_IRQn 0 */
   HAL_TIM_IRQHandler(&htim1);
   /* USER CODE BEGIN TIM1_UP_IRQn 1 */
@@ -377,8 +377,8 @@ void TIM2_IRQHandler(void)
 void TIM3_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM3_IRQn 0 */
-	HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-	HAL_ADC_Start_DMA(&hadc1, (uint32_t *)ADC_Values, 1);
+	//HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+	//HAL_ADC_Start_DMA(&hadc1, (uint32_t *)ADC_Values, 1);
   /* USER CODE END TIM3_IRQn 0 */
   HAL_TIM_IRQHandler(&htim3);
   /* USER CODE BEGIN TIM3_IRQn 1 */
@@ -401,7 +401,7 @@ void TIM4_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
-void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc)
+/*void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc)
 {
 	if (abs(ADC_Values[0]-ADC_Values[1]) > 200)
 	{
@@ -411,6 +411,6 @@ void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc)
 	HAL_DMA_Start_IT(&hdma_memtomem_dma1_channel2, ADC_Values, ADC_Values+1, 1);
 
 }
-
+*/
 /* USER CODE END 1 */
 

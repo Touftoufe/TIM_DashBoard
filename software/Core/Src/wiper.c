@@ -66,31 +66,5 @@ void wiper_stop(void){
 }
 
 
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-
-		if (htim == &htim4) {
-
-
-			switch (wiper_direction) {
-				case 1:
-					TIM2->CCR4=200;
-					wiper_direction=0;
-					break;
-				case 2:
-					TIM2->CCR4=100;
-					wiper_direction=1;
-					break;
-				default:
-					TIM2->CCR4=100;
-					wiper_direction=1;
-					break;
-				}
-
-
-
-
-
-		}
-
- 	 }
+//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+//{}
