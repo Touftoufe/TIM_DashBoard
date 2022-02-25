@@ -1,0 +1,6 @@
+lv_color.h:443:48:lv_color_mix	20	static
+lv_draw_sw_blend.c:654:26:color_blend_true_color_additive	20	static
+lv_draw_sw_blend.c:707:26:color_blend_true_color_subtractive	16	static
+lv_draw_sw_blend.c:733:26:color_blend_true_color_multiply	20	static
+lv_draw_sw_blend.c:95:6:lv_draw_sw_blend	24	static
+lv_draw_sw_blend.c:108:28:lv_draw_sw_blend_basic	88	static
