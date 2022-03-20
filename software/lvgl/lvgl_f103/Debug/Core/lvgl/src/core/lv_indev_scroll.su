@@ -1,8 +1,0 @@
-lv_indev_scroll.c:538:19:scroll_throw_predict_y.isra.0	8	static
-lv_indev_scroll.c:569:19:elastic_diff	40	static
-lv_indev_scroll.c:412:19:find_snap_point_x	64	static
-lv_indev_scroll.c:467:19:find_snap_point_y	64	static
-lv_indev_scroll.c:46:6:_lv_indev_scroll_handler	72	static
-lv_indev_scroll.c:95:6:_lv_indev_scroll_throw_handler	48	static
-lv_indev_scroll.c:207:12:lv_indev_scroll_throw_predict	0	static
-lv_indev_scroll.c:232:6:lv_indev_scroll_get_snap_dist	16	static

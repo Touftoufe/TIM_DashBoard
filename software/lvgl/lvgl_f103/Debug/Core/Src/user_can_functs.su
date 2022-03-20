@@ -1,3 +1,0 @@
-user_can_functs.c:22:6:CAN_send_message	32	static
-user_can_functs.c:35:6:CAN_receive_init	56	static
-user_can_functs.c:60:6:CAN_close_can	0	static
