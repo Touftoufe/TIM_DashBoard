@@ -1,3 +1,0 @@
-LVGL_Interface.c:48:6:disp_driver_flush	24	static
-LVGL_Interface.c:20:12:display	0	static
-LVGL_Interface.c:26:6:disp_driver_init	56	static

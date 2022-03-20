@@ -1,7 +1,0 @@
-lv_lru.c:239:17:lv_lru_hash	20	static
-lv_lru.c:282:13:lv_lru_remove_item	16	static
-lv_lru.c:71:12:lv_lru_new	24	static
-lv_lru.c:99:12:lv_lru_free	24	static
-lv_lru.c:137:12:lv_lru_set	40	static
-lv_lru.c:190:12:lv_lru_get	24	static
-lv_lru.c:213:12:lv_lru_delete	32	static

@@ -1,4 +1,0 @@
-lv_draw_sw_rect.c:371:48:grad_get	20	static
-lv_draw_sw_rect.c:992:35:shadow_blur_corner	64	static
-lv_draw_sw_rect.c:1108:6:draw_border_generic	192	static
-lv_draw_sw_rect.c:70:6:lv_draw_sw_rect	200	static

@@ -41,6 +41,9 @@
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths.1702254721" name="Include paths (-I)" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.option.includepaths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="../Core/Inc"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Drivers/CMSIS/Include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Drivers/CMSIS/Device/ST/STM32F1xx/Include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Drivers/STM32F1xx_HAL_Driver/Inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Core/lvgl}&quot;"/>
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Device/ST/STM32F1xx/Include"/>
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Include"/>
@@ -72,7 +75,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="lvgl/src/font/lv_font_montserrat_24.c|Src/light2.c|lvgl/src/extra/widgets|lvgl/src/extra/themes|lvgl/src/extra/others|lvgl/src/extra/libs|lvgl/src/font/lv_font_dejavu_16_persian_hebrew.c|lvgl/src/font/lv_font_unscii_8.c|lvgl/src/font/lv_font_unscii_16.c|lvgl/src/font/lv_font_simsun_16_cjk.c|lvgl/src/font/lv_font_montserrat_8.c|lvgl/src/font/lv_font_montserrat_48.c|lvgl/src/font/lv_font_montserrat_46.c|lvgl/src/font/lv_font_montserrat_44.c|lvgl/src/font/lv_font_montserrat_42.c|lvgl/src/font/lv_font_montserrat_40.c|lvgl/src/font/lv_font_montserrat_38.c|lvgl/src/font/lv_font_montserrat_36.c|lvgl/src/font/lv_font_montserrat_34.c|lvgl/src/font/lv_font_montserrat_32.c|lvgl/src/font/lv_font_montserrat_30.c|lvgl/src/font/lv_font_montserrat_28.c|lvgl/src/font/lv_font_montserrat_28_compressed.c|lvgl/src/font/lv_font_montserrat_26.c|lvgl/src/font/lv_font_montserrat_22.c|lvgl/src/font/lv_font_montserrat_20.c|lvgl/src/font/lv_font_montserrat_18.c|lvgl/src/font/lv_font_montserrat_16.c|lvgl/src/font/lv_font_montserrat_14.c|lvgl/src/font/lv_font_montserrat_12.c|lvgl/src/font/lv_font_montserrat_12_subpx.c|lvgl/src/font/lv_font_montserrat_10.c|Src/circle.c|Src/ILI9341|Src/ili9341_font.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
+						<entry excluding="lvgl/src/font/lv_font_montserrat_24.c|Src/light2.c|lvgl/src/extra/widgets|lvgl/src/extra/themes|lvgl/src/extra/others|lvgl/src/extra/libs|lvgl/src/font/lv_font_dejavu_16_persian_hebrew.c|lvgl/src/font/lv_font_unscii_8.c|lvgl/src/font/lv_font_unscii_16.c|lvgl/src/font/lv_font_simsun_16_cjk.c|lvgl/src/font/lv_font_montserrat_8.c|lvgl/src/font/lv_font_montserrat_48.c|lvgl/src/font/lv_font_montserrat_46.c|lvgl/src/font/lv_font_montserrat_44.c|lvgl/src/font/lv_font_montserrat_42.c|lvgl/src/font/lv_font_montserrat_40.c|lvgl/src/font/lv_font_montserrat_38.c|lvgl/src/font/lv_font_montserrat_36.c|lvgl/src/font/lv_font_montserrat_34.c|lvgl/src/font/lv_font_montserrat_32.c|lvgl/src/font/lv_font_montserrat_30.c|lvgl/src/font/lv_font_montserrat_28.c|lvgl/src/font/lv_font_montserrat_28_compressed.c|lvgl/src/font/lv_font_montserrat_26.c|lvgl/src/font/lv_font_montserrat_22.c|lvgl/src/font/lv_font_montserrat_20.c|lvgl/src/font/lv_font_montserrat_18.c|lvgl/src/font/lv_font_montserrat_16.c|lvgl/src/font/lv_font_montserrat_14.c|lvgl/src/font/lv_font_montserrat_12.c|lvgl/src/font/lv_font_montserrat_12_subpx.c|lvgl/src/font/lv_font_montserrat_10.c|Src/ILI9341|Src/ili9341_font.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 					</sourceEntries>
 				</configuration>
@@ -296,7 +299,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
+						<entry excluding="Src/circle.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 					</sourceEntries>
 				</configuration>

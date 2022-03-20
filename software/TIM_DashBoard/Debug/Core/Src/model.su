@@ -1,4 +1,0 @@
-model.c:58:6:HAL_GPIO_EXTI_Callback	8	static
-model.c:85:6:HAL_CAN_RxFifo0MsgPendingCallback	16	static
-model.c:110:6:HAL_ADC_ConvHalfCpltCallback	8	static
-model.c:124:6:HAL_TIM_PeriodElapsedCallback	8	static
