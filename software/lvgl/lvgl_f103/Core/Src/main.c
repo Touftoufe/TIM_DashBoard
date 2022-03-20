@@ -37,7 +37,7 @@
 #include "ili9341_gfx.h"
 #include "lvgl.h"
 #include "LVGL_Interface.h"
-#include "Testboard_ui.h"
+#include "view.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -122,25 +122,17 @@ int main(void)
   /* USER CODE BEGIN 2 */
   lv_init();
   disp_driver_init();
-  HAL_Delay(2000);
-  BuildPages();
-  lv_scr_load(Screen1);
+  HAL_Delay(1000);
+  view_init();
+
+  //CAN_receive_init();
+  //HAL_TIM_Base_Start_IT(&htim1);
+  //HAL_TIM_Base_Start_IT(&htim2);
+  //HAL_TIM_Base_Start_IT(&htim3);
+  //HAL_TIM_Base_Start_IT(&htim4);
 
 
-  CAN_receive_init();
-
-
-
-
-
-    wiper_start(wiper_speed_1);
-    HAL_TIM_Base_Start_IT(&htim1);
-    //HAL_TIM_Base_Start_IT(&htim2);
-    HAL_TIM_Base_Start_IT(&htim3);
-    //HAL_TIM_Base_Start_IT(&htim4);
-
-
-    wiper_start(3);
+    //wiper_start(3);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -151,11 +143,12 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-	  HAL_GPIO_WritePin(wiper_power_GPIO_Port, wiper_power_Pin, 1);
+	 /* HAL_GPIO_WritePin(wiper_power_GPIO_Port, wiper_power_Pin, 1);
 	  CAN_send_message(AT07_LIGHTS_CMD, AT07_LIGHTS_LENGTH, message );
 
 	  //CAN_send_message(AT07_LIGHTS_CMD, AT07_LIGHTS_LENGTH, message);
 	  HAL_Delay(1000);
+	  HAL_Delay(3);*/
 	  HAL_Delay(3);
 	  lv_task_handler();
   }
