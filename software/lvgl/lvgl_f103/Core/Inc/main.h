@@ -57,21 +57,41 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define Left_TurnSignal_Pin GPIO_PIN_13
+#define Left_TurnSignal_GPIO_Port GPIOC
+#define BackLight_Pin GPIO_PIN_1
+#define BackLight_GPIO_Port GPIOC
+#define MenuOk_Pin GPIO_PIN_2
+#define MenuOk_GPIO_Port GPIOC
+#define MenuVertical_Pin GPIO_PIN_3
+#define MenuVertical_GPIO_Port GPIOC
 #define BUT_Pin GPIO_PIN_0
 #define BUT_GPIO_Port GPIOA
 #define BUT_EXTI_IRQn EXTI0_IRQn
+#define MenuVerticalA1_Pin GPIO_PIN_1
+#define MenuVerticalA1_GPIO_Port GPIOA
 #define timer_pwm_Pin GPIO_PIN_3
 #define timer_pwm_GPIO_Port GPIOA
+#define CurrentSelector_Pin GPIO_PIN_4
+#define CurrentSelector_GPIO_Port GPIOA
 #define LCD_DC_Pin GPIO_PIN_4
 #define LCD_DC_GPIO_Port GPIOC
 #define SPI_CS_Pin GPIO_PIN_5
 #define SPI_CS_GPIO_Port GPIOC
 #define LCD_RST_Pin GPIO_PIN_0
 #define LCD_RST_GPIO_Port GPIOB
-#define wiper_power_Pin GPIO_PIN_9
-#define wiper_power_GPIO_Port GPIOC
+#define WiperSpeed_Pin GPIO_PIN_12
+#define WiperSpeed_GPIO_Port GPIOB
+#define WiperPower_Pin GPIO_PIN_9
+#define WiperPower_GPIO_Port GPIOC
+#define Right_TurnSignal_Pin GPIO_PIN_8
+#define Right_TurnSignal_GPIO_Port GPIOA
 #define CAN_STBY_Pin GPIO_PIN_9
 #define CAN_STBY_GPIO_Port GPIOA
+#define ForwardReverse_Pin GPIO_PIN_10
+#define ForwardReverse_GPIO_Port GPIOA
+#define Accelerator_Pin GPIO_PIN_11
+#define Accelerator_GPIO_Port GPIOC
 #define LED_Pin GPIO_PIN_12
 #define LED_GPIO_Port GPIOC
 /* USER CODE BEGIN Private defines */

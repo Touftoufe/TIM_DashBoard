@@ -15,7 +15,7 @@ uint8_t CAN_Data[8];
 uint32_t RxFifo = 1;
 uint32_t pCAN_TxMailbox;
 
-CAN_RxHeaderTypeDef pCAN_RxHeader;
+//CAN_RxHeaderTypeDef pCAN_RxHeader;
 
 // --CAN
 

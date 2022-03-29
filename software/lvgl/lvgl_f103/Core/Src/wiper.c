@@ -30,6 +30,9 @@ void wiper_start(wiper_speed the_wiper_speed){
 
 	//configure htim4 period using wiper_speed
     switch (the_wiper_speed) {
+    	case wiper_speed_0 :
+    		wiper_stop();
+    		break;
 		case wiper_speed_1:
 			htim4.Init.Period=10000-1;
 			HAL_TIM_Base_Init(&htim4);
@@ -49,16 +52,16 @@ void wiper_start(wiper_speed the_wiper_speed){
 	}
 
 
-    //switch wiper_power on
-    	HAL_GPIO_WritePin(wiper_power_GPIO_Port, wiper_power_Pin, GPIO_PIN_SET);
+    //switch WiperPower on
+    	HAL_GPIO_WritePin(WiperPower_GPIO_Port, WiperPower_Pin, GPIO_PIN_SET);
 
 
 }
 
 
 void wiper_stop(void){
-	//switch wiper_power off
-    HAL_GPIO_WritePin(wiper_power_GPIO_Port, wiper_power_Pin, GPIO_PIN_RESET);
+	//switch WiperPower off
+    HAL_GPIO_WritePin(WiperPower_GPIO_Port, WiperPower_Pin, GPIO_PIN_RESET);
 
 
 	//turn timer 2 and 4 off

@@ -13,6 +13,7 @@
 
 
 typedef enum {
+	wiper_speed_0 = 0,
 	wiper_speed_1 = 1,
 	wiper_speed_2 = 2,
 	wiper_speed_3 = 3

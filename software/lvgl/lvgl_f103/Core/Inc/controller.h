@@ -12,7 +12,7 @@
 #include <stdio.h>
 // MODEL
 
-
+// no action from view to model for now
 
 
 

@@ -1,20 +1,20 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file           : main.c
-  * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2022 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file           : main.c
+ * @brief          : Main program body
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2022 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -58,17 +58,14 @@
 
 /* USER CODE BEGIN PV */
 
-
 uint8_t state = 0x01;
-volatile int8_t message[8]={1};
+uint8_t message[8] = { 1 };
 
+extern uint8_t RxData;
+extern uint32_t RxFifo;
+extern uint8_t CAN_Data;
 
-extern uint8_t	RxData  ;
-extern uint32_t RxFifo 	;
-extern uint8_t	CAN_Data;
-
-volatile int16_t ADC_Values[3] = {0,0,0};
-
+volatile int16_t ADC_Values[3] = { 0, 0, 0 };
 
 /* USER CODE END PV */
 
@@ -120,38 +117,33 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
-  lv_init();
-  disp_driver_init();
-  HAL_Delay(1000);
-  view_init();
+	lv_init();
+	disp_driver_init();
+	HAL_Delay(1000);
+	view_init();
 
-  //CAN_receive_init();
-  //HAL_TIM_Base_Start_IT(&htim1);
-  //HAL_TIM_Base_Start_IT(&htim2);
-  //HAL_TIM_Base_Start_IT(&htim3);
-  //HAL_TIM_Base_Start_IT(&htim4);
+	//CAN_receive_init();
+	HAL_TIM_Base_Start_IT(&htim1);
+	HAL_TIM_Base_Start_IT(&htim2);
+	HAL_TIM_Base_Start_IT(&htim3);
+	HAL_TIM_Base_Start_IT(&htim4);
 
-
-    //wiper_start(3);
+	//wiper_start(3);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+	while (1) {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 
-	 /* HAL_GPIO_WritePin(wiper_power_GPIO_Port, wiper_power_Pin, 1);
-	  CAN_send_message(AT07_LIGHTS_CMD, AT07_LIGHTS_LENGTH, message );
+		HAL_GPIO_WritePin(WiperPower_GPIO_Port, WiperPower_Pin, 1);
+		CAN_send_message(AT07_LIGHTS_CMD, AT07_LIGHTS_LENGTH, message);
 
-	  //CAN_send_message(AT07_LIGHTS_CMD, AT07_LIGHTS_LENGTH, message);
-	  HAL_Delay(1000);
-	  HAL_Delay(3);*/
-	  HAL_Delay(3);
-	  lv_task_handler();
-  }
+		HAL_Delay(3);
+		lv_task_handler();
+	}
   /* USER CODE END 3 */
 }
 
@@ -211,11 +203,10 @@ void SystemClock_Config(void)
 void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-  while (1)
-  {
-  }
+	/* User can add his own implementation to report the HAL error return state */
+	__disable_irq();
+	while (1) {
+	}
   /* USER CODE END Error_Handler_Debug */
 }
 
