@@ -61,11 +61,11 @@
 uint8_t state = 0x01;
 uint8_t message[8] = { 1 };
 
-extern uint8_t RxData;
+
 extern uint32_t RxFifo;
 extern uint8_t CAN_Data;
 
-volatile int16_t ADC_Values[3] = { 0, 0, 0 };
+int16_t ADC_Values[2] = {0};
 
 /* USER CODE END PV */
 
@@ -122,7 +122,7 @@ int main(void)
 	HAL_Delay(1000);
 	view_init();
 
-	//CAN_receive_init();
+	CAN_receive_init();
 	HAL_TIM_Base_Start_IT(&htim1);
 	HAL_TIM_Base_Start_IT(&htim2);
 	HAL_TIM_Base_Start_IT(&htim3);
@@ -137,9 +137,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-		HAL_GPIO_WritePin(WiperPower_GPIO_Port, WiperPower_Pin, 1);
-		CAN_send_message(AT07_LIGHTS_CMD, AT07_LIGHTS_LENGTH, message);
 
 		HAL_Delay(3);
 		lv_task_handler();
