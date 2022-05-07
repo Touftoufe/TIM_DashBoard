@@ -57,11 +57,6 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
-uint8_t state = 0x01;
-uint8_t message[8] = { 1 };
-
-
 extern uint32_t RxFifo;
 extern uint8_t CAN_Data;
 

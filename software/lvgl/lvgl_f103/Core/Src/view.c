@@ -168,26 +168,22 @@ void reset_icons(lv_timer_t *timer) {
 void set_TLs(lv_timer_t *timer) {
 	static int on = 1;
 	view_TL TL = (view_TL) (timer->user_data);
-	if (TL == NONE) {
-		lv_obj_add_flag(img_left_turn, LV_OBJ_FLAG_HIDDEN);
-		lv_obj_add_flag(img_right_turn, LV_OBJ_FLAG_HIDDEN);
-		on = 1;
-	} else {
-		if (TL == LEFT || TL == BOTH) {
-			if (on) {
-				lv_obj_clear_flag(img_left_turn, LV_OBJ_FLAG_HIDDEN);
-			} else {
-				lv_obj_add_flag(img_left_turn, LV_OBJ_FLAG_HIDDEN);
-			}
-		}
-		if (TL == RIGHT || TL == BOTH) {
-			if (on) {
-				lv_obj_clear_flag(img_right_turn, LV_OBJ_FLAG_HIDDEN);
-			} else {
-				lv_obj_add_flag(img_right_turn, LV_OBJ_FLAG_HIDDEN);
-			}
-		}
-		on = !on;
+	lv_obj_add_flag(img_left_turn, LV_OBJ_FLAG_HIDDEN);
+	lv_obj_add_flag(img_right_turn, LV_OBJ_FLAG_HIDDEN);
 
+	if (TL == LEFT || TL == BOTH) {
+		if (on) {
+			lv_obj_clear_flag(img_left_turn, LV_OBJ_FLAG_HIDDEN);
+		} else {
+			lv_obj_add_flag(img_left_turn, LV_OBJ_FLAG_HIDDEN);
+		}
 	}
+	if (TL == RIGHT || TL == BOTH) {
+		if (on) {
+			lv_obj_clear_flag(img_right_turn, LV_OBJ_FLAG_HIDDEN);
+		} else {
+			lv_obj_add_flag(img_right_turn, LV_OBJ_FLAG_HIDDEN);
+		}
+	}
+	on = !on;
 }
