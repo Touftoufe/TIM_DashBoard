@@ -76,8 +76,6 @@ void Error_Handler(void);
 #define WiperStateA_Pin GPIO_PIN_14
 #define WiperStateA_GPIO_Port GPIOB
 #define WiperStateA_EXTI_IRQn EXTI15_10_IRQn
-#define WiperPower_Pin GPIO_PIN_9
-#define WiperPower_GPIO_Port GPIOC
 #define CAN_STBY_Pin GPIO_PIN_9
 #define CAN_STBY_GPIO_Port GPIOA
 #define LED_Pin GPIO_PIN_12

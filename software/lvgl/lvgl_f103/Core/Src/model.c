@@ -70,8 +70,6 @@ CAN_RxHeaderTypeDef pCAN_RxHeader;
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	// on interruption on a pin (ex : BUT_Pin or GPIO_PIN_0 or ((uint16_t)0x0001) )
 
-
-
 	if (GPIO_Pin == Accelerator_Pin) {
 		if (HAL_GPIO_ReadPin(Accelerator_GPIO_Port, Accelerator_Pin)
 				== GPIO_PIN_RESET) {
@@ -87,7 +85,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	}
 
 	if (GPIO_Pin == HeadLight_Pin) {
-		uint8_t LightCMD =  0 ;
+		uint8_t LightCMD = 0;
 		if (HAL_GPIO_ReadPin(HeadLight_GPIO_Port, HeadLight_Pin)
 				== GPIO_PIN_RESET) {
 			refresh_light(1U);
@@ -142,6 +140,31 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 		refresh_turning_signals(turning_signal);
 	}
+
+	if ((GPIO_Pin == WiperStateA_Pin)
+				|| (GPIO_Pin == WiperStateB_Pin)) {
+			//uint16_t wiper_state = 0;
+
+			uint8_t WiperStateAPressed = (HAL_GPIO_ReadPin(WiperStateA_GPIO_Port,
+					WiperStateA_Pin) == GPIO_PIN_RESET) ? 1 : 0;
+
+			uint8_t WiperStateBPressed = (HAL_GPIO_ReadPin(WiperStateB_GPIO_Port,
+					WiperStateB_Pin) == GPIO_PIN_RESET) ? 1 : 0;
+
+			if ((WiperStateAPressed == 1 && WiperStateBPressed == 0)) {
+				wiper_start(1);
+			} else if ((WiperStateAPressed == 0 && WiperStateBPressed == 1)) {
+				wiper_start(2);
+			} else {
+				wiper_stop();
+			}
+
+
+		}
+
+	//To continue to compare with other pin on the same EXTI use :
+
+
 	//To continue to compare with other pin on the same EXTI use :
 
 	/* if (GPIO_Pin && GPIO_Pin) {
@@ -163,12 +186,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 
-	uint8_t RxData[8] = {0};
+	uint8_t RxData[8] = { 0 };
 	HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &pCAN_RxHeader, RxData);
 
 	//speed
 	if ((pCAN_RxHeader.ExtId) == 0x8060140) {
-		int ShowedSpeed = (RxData[3] + (RxData[2] << 8))/10;
+		int ShowedSpeed = (RxData[3] + (RxData[2] << 8)) / 10;
 		refresh_speed(ShowedSpeed);
 	}
 }
@@ -192,16 +215,16 @@ uint16_t AdcToCurrentcmd(uint16_t ADC_Value) {
 	} else if (ADC_Value <= ADC_REF_6 && ADC_Value > ADC_REF_5) {
 		return 6;
 	} /*else if (ADC_Value <= ADC_REF_8 && ADC_Value > ADC_REF_7) {
-		return 7;
-	} else if (ADC_Value <= ADC_REF_9 && ADC_Value > ADC_REF_8) {
-		return 8;
-	} else if (ADC_Value <= ADC_REF_10 && ADC_Value > ADC_REF_9) {
-		return 9;
-	} else if (ADC_Value <= ADC_REF_11 && ADC_Value > ADC_REF_10) {
-		return 9;
-	} else if (ADC_Value <= ADC_REF_12 && ADC_Value > ADC_REF_11) {
-		return 9;
-	}*/ else {
+	 return 7;
+	 } else if (ADC_Value <= ADC_REF_9 && ADC_Value > ADC_REF_8) {
+	 return 8;
+	 } else if (ADC_Value <= ADC_REF_10 && ADC_Value > ADC_REF_9) {
+	 return 9;
+	 } else if (ADC_Value <= ADC_REF_11 && ADC_Value > ADC_REF_10) {
+	 return 9;
+	 } else if (ADC_Value <= ADC_REF_12 && ADC_Value > ADC_REF_11) {
+	 return 9;
+	 }*/else {
 		return 0;
 	}
 }
@@ -211,10 +234,11 @@ void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef *hadc) {
 		//change the equation into a table
 		uint16_t currentCommand = AdcToCurrentcmd(ADC_Values[0]);
 
-		uint8_t TxMotorFRW[2] = {(currentCommand * 2000) & 0xFF,
-								 ((currentCommand * 2000) >> 8) & 0xFF};
+		uint8_t TxMotorFRW[2] = { ((currentCommand * 2000) >> 8) & 0xFF,
+				(currentCommand * 2000) & 0xFF };
 		refresh_command(currentCommand);
-		CAN_send_message(AT07_CMD_ELEC_MOTOR_FORWARD, AT07_ELEC_MOTOR_FORWARD_LENGTH, TxMotorFRW);
+		CAN_send_message(AT07_CMD_ELEC_MOTOR_FORWARD,
+				AT07_ELEC_MOTOR_FORWARD_LENGTH, TxMotorFRW);
 	}
 //change this into a simple variable affectation
 //HAL_DMA_Start_IT(&hdma_memtomem_dma1_channel2, (uint32_t) ADC_Values,

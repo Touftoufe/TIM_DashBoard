@@ -123,7 +123,7 @@ int main(void)
 	HAL_TIM_Base_Start_IT(&htim3);
 	HAL_TIM_Base_Start_IT(&htim4);
 
-	//wiper_start(3);
+	//wiper_start(1);
   /* USER CODE END 2 */
 
   /* Infinite loop */

@@ -24,7 +24,7 @@ void wiper_start(wiper_speed the_wiper_speed){
 
 
 	//HAL_TIM_Base_Start_IT(&htim2);
-    HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
+    HAL_TIM_PWM_Start_IT(&htim2, TIM_CHANNEL_4);
     HAL_TIM_Base_Start_IT(&htim4);
 
 
@@ -53,7 +53,7 @@ void wiper_start(wiper_speed the_wiper_speed){
 
 
     //switch WiperPower on
-    	HAL_GPIO_WritePin(WiperPower_GPIO_Port, WiperPower_Pin, GPIO_PIN_SET);
+    	//HAL_GPIO_WritePin(WiperPower_GPIO_Port, WiperPower_Pin, GPIO_PIN_SET);
 
 
 }
@@ -61,10 +61,13 @@ void wiper_start(wiper_speed the_wiper_speed){
 
 void wiper_stop(void){
 	//switch WiperPower off
-    HAL_GPIO_WritePin(WiperPower_GPIO_Port, WiperPower_Pin, GPIO_PIN_RESET);
+    //HAL_GPIO_WritePin(WiperPower_GPIO_Port, WiperPower_Pin, GPIO_PIN_RESET);
 
 
 	//turn timer 2 and 4 off
+	//HAL_TIM_Base_Start_IT(&htim2);
+	HAL_TIM_Base_Stop(&htim2);
+	HAL_TIM_Base_Stop(&htim4);
 
 }
 
