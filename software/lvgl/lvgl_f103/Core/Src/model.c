@@ -26,10 +26,11 @@
 #include "user_can_functs.h"
 #include "wiper.h"
 
-// defines
-
+//Macro
 #define abs(a) (((a) > 0) ? (a) : -(a))
 
+//Defines
+//The reference values are to be redefined
 #define ADC_MAX 4096
 #define ADC_REF_12
 #define ADC_REF_11
@@ -51,19 +52,19 @@
 extern DMA_HandleTypeDef hdma_adc1;
 extern ADC_HandleTypeDef hadc1;
 extern CAN_HandleTypeDef hcan;
-extern DMA_HandleTypeDef hdma_memtomem_dma1_channel2;
 extern TIM_HandleTypeDef htim1;
 extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim4;
+
 /* USER CODE BEGIN EV */
-extern volatile int16_t ADC_Values[3];
-volatile uint8_t enable_motor_CMD = 0;
+
 uint8_t TxMotorCMD;
+int16_t ADC_Values[2] = { 0 };
+volatile uint8_t enable_motor_CMD = 0;
 wiper_speed SpeedOfWiper = wiper_speed_0;
 
-extern uint8_t wiper_direction;
-CAN_RxHeaderTypeDef pCAN_RxHeader;
+extern uint8_t wiper_direction; //define in wiper.c & used in timer control in model.c
 
 // model : control GPIO (interrupts)
 
@@ -141,52 +142,31 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 		refresh_turning_signals(turning_signal);
 	}
 
-	if ((GPIO_Pin == WiperStateA_Pin)
-				|| (GPIO_Pin == WiperStateB_Pin)) {
-			//uint16_t wiper_state = 0;
+	if ((GPIO_Pin == WiperStateA_Pin) || (GPIO_Pin == WiperStateB_Pin)) {
+		//uint16_t wiper_state = 0;
 
-			uint8_t WiperStateAPressed = (HAL_GPIO_ReadPin(WiperStateA_GPIO_Port,
-					WiperStateA_Pin) == GPIO_PIN_RESET) ? 1 : 0;
+		uint8_t WiperStateAPressed = (HAL_GPIO_ReadPin(WiperStateA_GPIO_Port,
+		WiperStateA_Pin) == GPIO_PIN_RESET) ? 1 : 0;
 
-			uint8_t WiperStateBPressed = (HAL_GPIO_ReadPin(WiperStateB_GPIO_Port,
-					WiperStateB_Pin) == GPIO_PIN_RESET) ? 1 : 0;
+		uint8_t WiperStateBPressed = (HAL_GPIO_ReadPin(WiperStateB_GPIO_Port,
+		WiperStateB_Pin) == GPIO_PIN_RESET) ? 1 : 0;
 
-			if ((WiperStateAPressed == 1 && WiperStateBPressed == 0)) {
-				wiper_start(1);
-			} else if ((WiperStateAPressed == 0 && WiperStateBPressed == 1)) {
-				wiper_start(2);
-			} else {
-				wiper_stop();
-			}
-
-
+		if ((WiperStateAPressed == 1 && WiperStateBPressed == 0)) {
+			wiper_start(1);
+		} else if ((WiperStateAPressed == 0 && WiperStateBPressed == 1)) {
+			wiper_start(2);
+		} else {
+			wiper_stop();
 		}
-
-	//To continue to compare with other pin on the same EXTI use :
-
-
-	//To continue to compare with other pin on the same EXTI use :
-
-	/* if (GPIO_Pin && GPIO_Pin) {
-	 * 		if (HAL_GPIO_ReadPin(GPIO_Port, GPIO_Pin)==GPIO_PIN_RESET){
-	 *
-	 *		}
-	 *		else if (HAL_GPIO_ReadPin(GPIO_Port, GPIO_Pin)==GPIO_PIN_SET) {
-	 *
-	 *		}
-	 * }
-	 */
-
+	}
 }
-// model : control GPIO (write/read)
-
-// model : control wiper
 
 // model : receive CAN messages
-
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 
 	uint8_t RxData[8] = { 0 };
+	CAN_RxHeaderTypeDef pCAN_RxHeader;  //move from general to local
+
 	HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &pCAN_RxHeader, RxData);
 
 	//speed
@@ -195,8 +175,6 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 		refresh_speed(ShowedSpeed);
 	}
 }
-
-// model : send CAN messages
 
 // model : ADC input
 uint16_t AdcToCurrentcmd(uint16_t ADC_Value) {
@@ -238,11 +216,9 @@ void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef *hadc) {
 				(currentCommand * 2000) & 0xFF };
 		refresh_command(currentCommand);
 		CAN_send_message(AT07_CMD_ELEC_MOTOR_FORWARD,
-				AT07_ELEC_MOTOR_FORWARD_LENGTH, TxMotorFRW);
+		AT07_ELEC_MOTOR_FORWARD_LENGTH, TxMotorFRW);
 	}
-//change this into a simple variable affectation
-//HAL_DMA_Start_IT(&hdma_memtomem_dma1_channel2, (uint32_t) ADC_Values,
-//		(uint32_t) (ADC_Values + 1), 1);
+
 	ADC_Values[1] = ADC_Values[0];
 
 }
@@ -276,4 +252,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		}
 	}
 }
+
+// model : send CAN messages
+
+// model : control GPIO (write/read)
+
+// model : control wiper
+//=====================================> migrating wiper code to model to be tried ????
 
