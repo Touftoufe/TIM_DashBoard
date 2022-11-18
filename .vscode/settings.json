@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "user_can_functs.h": "c",
+        "model.h": "c",
+        "user_can.h": "c",
+        "wiper.h": "c",
+        "tim.h": "c",
+        "main.h": "c",
+        "controller.h": "c",
+        "lvgl_interface.h": "c",
+        "lvgl.h": "c",
+        "ili9341_gfx.h": "c",
+        "view.h": "c",
+        "lv_obj.h": "c"
+    }
+}

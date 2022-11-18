@@ -1,0 +1,583 @@
+cmake_minimum_required(VERSION 3.22)
+project(TIM_DashBoard)
+
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(software/lvgl/lvgl_f103/Core)
+include_directories(software/lvgl/lvgl_f103/Core/Inc)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/core)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/draw)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/draw/nxp_pxp)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/draw/nxp_vglite)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/draw/stm32_dma2d)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/draw/sw)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/layouts)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/layouts/flex)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/layouts/grid)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/bmp)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/ffmpeg)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/freetype)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/fsdrv)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/gif)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/png)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/qrcode)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/rlottie)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/sjpg)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/others)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/others/monkey)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/others/snapshot)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/themes)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/themes/basic)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/themes/default)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/themes/mono)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/animimg)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/calendar)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/chart)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/colorwheel)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/imgbtn)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/keyboard)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/led)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/list)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/menu)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/meter)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/msgbox)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/span)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/spinbox)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/spinner)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/tabview)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/tileview)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/win)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/font)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/hal)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/misc)
+include_directories(software/lvgl/lvgl_f103/Core/lvgl/src/widgets)
+include_directories(software/lvgl/lvgl_f103/Drivers/CMSIS)
+include_directories(software/lvgl/lvgl_f103/Drivers/CMSIS/Device)
+include_directories(software/lvgl/lvgl_f103/Drivers/CMSIS/Device/ST)
+include_directories(software/lvgl/lvgl_f103/Drivers/CMSIS/Device/ST/STM32F1xx)
+include_directories(software/lvgl/lvgl_f103/Drivers/CMSIS/Device/ST/STM32F1xx/Include)
+include_directories(software/lvgl/lvgl_f103/Drivers/CMSIS/Include)
+include_directories(software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc)
+include_directories(software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy)
+include_directories(software/TIM_DashBoard/Core/Inc)
+include_directories(software/TIM_DashBoard/Drivers/CMSIS)
+include_directories(software/TIM_DashBoard/Drivers/CMSIS/Device)
+include_directories(software/TIM_DashBoard/Drivers/CMSIS/Device/ST)
+include_directories(software/TIM_DashBoard/Drivers/CMSIS/Device/ST/STM32F1xx)
+include_directories(software/TIM_DashBoard/Drivers/CMSIS/Device/ST/STM32F1xx/Include)
+include_directories(software/TIM_DashBoard/Drivers/CMSIS/Include)
+include_directories(software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc)
+include_directories(software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy)
+
+add_executable(TIM_DashBoard
+        software/.metadata/.plugins/org.eclipse.cdt.make.core/specs.c
+        software/.metadata/.plugins/org.eclipse.cdt.make.core/specs.cpp
+        software/.metadata/.plugins/org.eclipse.cdt.managedbuilder.core/spec.c
+        software/.metadata/.plugins/org.eclipse.cdt.managedbuilder.core/spec.cpp
+        software/lvgl/lvgl_f103/Core/Inc/adc.h
+        software/lvgl/lvgl_f103/Core/Inc/can.h
+        software/lvgl/lvgl_f103/Core/Inc/controller.h
+        software/lvgl/lvgl_f103/Core/Inc/dma.h
+        software/lvgl/lvgl_f103/Core/Inc/gpio.h
+        software/lvgl/lvgl_f103/Core/Inc/ili9341.h
+        software/lvgl/lvgl_f103/Core/Inc/ili9341_font.h
+        software/lvgl/lvgl_f103/Core/Inc/ili9341_gfx.h
+        software/lvgl/lvgl_f103/Core/Inc/LVGL_Interface.h
+        software/lvgl/lvgl_f103/Core/Inc/main.h
+        software/lvgl/lvgl_f103/Core/Inc/model.h
+        software/lvgl/lvgl_f103/Core/Inc/spi.h
+        software/lvgl/lvgl_f103/Core/Inc/stm32f1xx_hal_conf.h
+        software/lvgl/lvgl_f103/Core/Inc/stm32f1xx_it.h
+        software/lvgl/lvgl_f103/Core/Inc/tim.h
+        software/lvgl/lvgl_f103/Core/Inc/user_can.h
+        software/lvgl/lvgl_f103/Core/Inc/user_can_functs.h
+        software/lvgl/lvgl_f103/Core/Inc/user_motor_control.h
+        software/lvgl/lvgl_f103/Core/Inc/view.h
+        software/lvgl/lvgl_f103/Core/Inc/wiper.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_disp.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_disp.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_event.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_event.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_group.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_group.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_indev.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_indev.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_indev_scroll.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_indev_scroll.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_obj.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_obj.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_obj_class.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_obj_class.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_obj_draw.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_obj_draw.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_obj_pos.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_obj_pos.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_obj_scroll.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_obj_scroll.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_obj_style.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_obj_style.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_obj_style_gen.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_obj_style_gen.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_obj_tree.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_obj_tree.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_refr.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_refr.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_theme.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/core/lv_theme.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/nxp_pxp/lv_gpu_nxp_pxp.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/nxp_pxp/lv_gpu_nxp_pxp.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/nxp_pxp/lv_gpu_nxp_pxp_osa.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/nxp_pxp/lv_gpu_nxp_pxp_osa.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/nxp_vglite/lv_gpu_nxp_vglite.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/nxp_vglite/lv_gpu_nxp_vglite.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_arc.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_bg.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_blend.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_composite.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_composite.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_img.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_label.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_line.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_mask.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_mask.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_priv.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_rect.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_stack_blur.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_stack_blur.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_texture_cache.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_texture_cache.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_utils.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sdl/lv_draw_sdl_utils.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/stm32_dma2d/lv_gpu_stm32_dma2d.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/stm32_dma2d/lv_gpu_stm32_dma2d.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sw/lv_draw_sw.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sw/lv_draw_sw.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sw/lv_draw_sw_arc.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sw/lv_draw_sw_blend.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sw/lv_draw_sw_blend.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sw/lv_draw_sw_img.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sw/lv_draw_sw_letter.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sw/lv_draw_sw_line.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sw/lv_draw_sw_polygon.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/sw/lv_draw_sw_rect.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_draw.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_draw.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_draw_arc.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_draw_arc.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_draw_img.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_draw_img.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_draw_label.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_draw_label.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_draw_line.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_draw_line.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_draw_mask.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_draw_mask.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_draw_rect.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_draw_rect.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_draw_triangle.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_draw_triangle.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_img_buf.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_img_buf.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_img_cache.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_img_cache.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_img_decoder.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/draw/lv_img_decoder.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/layouts/flex/lv_flex.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/layouts/flex/lv_flex.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/layouts/grid/lv_grid.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/layouts/grid/lv_grid.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/layouts/lv_layouts.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/bmp/lv_bmp.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/bmp/lv_bmp.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/ffmpeg/lv_ffmpeg.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/ffmpeg/lv_ffmpeg.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/freetype/lv_freetype.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/freetype/lv_freetype.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/fsdrv/lv_fs_fatfs.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/fsdrv/lv_fs_posix.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/fsdrv/lv_fs_stdio.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/fsdrv/lv_fs_win32.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/fsdrv/lv_fsdrv.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/gif/gifdec.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/gif/gifdec.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/gif/lv_gif.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/gif/lv_gif.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/png/lodepng.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/png/lodepng.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/png/lv_png.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/png/lv_png.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/qrcode/lv_qrcode.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/qrcode/lv_qrcode.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/qrcode/qrcodegen.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/qrcode/qrcodegen.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/rlottie/lv_rlottie.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/rlottie/lv_rlottie.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/sjpg/lv_sjpg.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/sjpg/lv_sjpg.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/sjpg/tjpgd.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/sjpg/tjpgd.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/sjpg/tjpgdcnf.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/libs/lv_libs.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/others/monkey/lv_monkey.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/others/monkey/lv_monkey.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/others/snapshot/lv_snapshot.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/others/snapshot/lv_snapshot.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/others/lv_others.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/themes/basic/lv_theme_basic.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/themes/basic/lv_theme_basic.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/themes/default/lv_theme_default.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/themes/default/lv_theme_default.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/themes/mono/lv_theme_mono.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/themes/mono/lv_theme_mono.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/themes/lv_themes.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/animimg/lv_animimg.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/animimg/lv_animimg.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/calendar/lv_calendar.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/calendar/lv_calendar.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/calendar/lv_calendar_header_arrow.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/calendar/lv_calendar_header_arrow.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/calendar/lv_calendar_header_dropdown.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/calendar/lv_calendar_header_dropdown.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/chart/lv_chart.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/chart/lv_chart.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/colorwheel/lv_colorwheel.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/colorwheel/lv_colorwheel.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/imgbtn/lv_imgbtn.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/imgbtn/lv_imgbtn.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/keyboard/lv_keyboard.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/keyboard/lv_keyboard.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/led/lv_led.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/led/lv_led.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/list/lv_list.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/list/lv_list.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/menu/lv_menu.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/menu/lv_menu.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/meter/lv_meter.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/meter/lv_meter.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/msgbox/lv_msgbox.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/msgbox/lv_msgbox.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/span/lv_span.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/span/lv_span.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/spinbox/lv_spinbox.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/spinbox/lv_spinbox.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/spinner/lv_spinner.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/spinner/lv_spinner.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/tabview/lv_tabview.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/tabview/lv_tabview.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/tileview/lv_tileview.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/tileview/lv_tileview.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/win/lv_win.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/win/lv_win.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/widgets/lv_widgets.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/lv_extra.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/extra/lv_extra.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_dejavu_16_persian_hebrew.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_fmt_txt.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_fmt_txt.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_loader.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_loader.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_10.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_12.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_12_subpx.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_14.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_16.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_18.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_20.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_22.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_24.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_26.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_28.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_28_compressed.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_30.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_32.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_34.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_36.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_38.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_40.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_42.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_44.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_46.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_48.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_montserrat_8.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_simsun_16_cjk.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_unscii_16.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_font_unscii_8.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/font/lv_symbol_def.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/hal/lv_hal.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/hal/lv_hal_disp.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/hal/lv_hal_disp.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/hal/lv_hal_indev.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/hal/lv_hal_indev.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/hal/lv_hal_tick.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/hal/lv_hal_tick.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_anim.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_anim.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_anim_timeline.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_anim_timeline.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_area.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_area.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_assert.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_async.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_async.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_bidi.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_bidi.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_color.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_color.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_fs.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_fs.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_gc.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_gc.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_ll.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_ll.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_log.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_log.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_lru.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_lru.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_math.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_math.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_mem.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_mem.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_printf.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_printf.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_style.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_style.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_style_gen.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_style_gen.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_templ.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_templ.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_timer.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_timer.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_tlsf.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_tlsf.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_txt.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_txt.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_txt_ap.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_txt_ap.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_types.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_utils.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/misc/lv_utils.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_arc.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_arc.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_bar.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_bar.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_btn.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_btn.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_btnmatrix.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_btnmatrix.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_canvas.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_canvas.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_checkbox.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_checkbox.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_dropdown.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_dropdown.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_img.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_img.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_label.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_label.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_line.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_line.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_objx_templ.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_objx_templ.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_roller.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_roller.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_slider.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_slider.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_switch.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_switch.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_table.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_table.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_textarea.c
+        software/lvgl/lvgl_f103/Core/lvgl/src/widgets/lv_textarea.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/lv_api_map.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/lv_conf_internal.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/lv_conf_kconfig.h
+        software/lvgl/lvgl_f103/Core/lvgl/src/lvgl.h
+        software/lvgl/lvgl_f103/Core/lvgl/lvgl.h
+        software/lvgl/lvgl_f103/Core/Src/adc.c
+        software/lvgl/lvgl_f103/Core/Src/can.c
+        software/lvgl/lvgl_f103/Core/Src/circle90.c
+        software/lvgl/lvgl_f103/Core/Src/controller.c
+        software/lvgl/lvgl_f103/Core/Src/dma.c
+        software/lvgl/lvgl_f103/Core/Src/f_speed_2.c
+        software/lvgl/lvgl_f103/Core/Src/font_cmd.c
+        software/lvgl/lvgl_f103/Core/Src/gpio.c
+        software/lvgl/lvgl_f103/Core/Src/ili9341.c
+        software/lvgl/lvgl_f103/Core/Src/ili9341_font.c
+        software/lvgl/lvgl_f103/Core/Src/ili9341_gfx.c
+        software/lvgl/lvgl_f103/Core/Src/light.c
+        software/lvgl/lvgl_f103/Core/Src/LVGL_Interface.c
+        software/lvgl/lvgl_f103/Core/Src/main.c
+        software/lvgl/lvgl_f103/Core/Src/model.c
+        software/lvgl/lvgl_f103/Core/Src/spi.c
+        software/lvgl/lvgl_f103/Core/Src/sport.c
+        software/lvgl/lvgl_f103/Core/Src/stm32f1xx_hal_msp.c
+        software/lvgl/lvgl_f103/Core/Src/stm32f1xx_it.c
+        software/lvgl/lvgl_f103/Core/Src/syscalls.c
+        software/lvgl/lvgl_f103/Core/Src/sysmem.c
+        software/lvgl/lvgl_f103/Core/Src/system_stm32f1xx.c
+        software/lvgl/lvgl_f103/Core/Src/tim.c
+        software/lvgl/lvgl_f103/Core/Src/TL.c
+        software/lvgl/lvgl_f103/Core/Src/user_can_functs.c
+        software/lvgl/lvgl_f103/Core/Src/view.c
+        software/lvgl/lvgl_f103/Core/Src/wiper.c
+        software/lvgl/lvgl_f103/Core/lv_conf.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/cmsis_armcc.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/cmsis_armclang.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/cmsis_compiler.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/cmsis_gcc.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/cmsis_iccarm.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/cmsis_version.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/core_armv8mbl.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/core_armv8mml.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/core_cm0.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/core_cm0plus.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/core_cm1.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/core_cm23.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/core_cm3.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/core_cm33.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/core_cm4.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/core_cm7.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/core_sc000.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/core_sc300.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/mpu_armv7.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/mpu_armv8.h
+        software/lvgl/lvgl_f103/Drivers/CMSIS/Include/tz_context.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_can.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.c
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.c
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_can.c
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_spi.c
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c
+        software/lvgl/lvgl_f103/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c
+        software/TIM_DashBoard/Core/Inc/adc.h
+        software/TIM_DashBoard/Core/Inc/can.h
+        software/TIM_DashBoard/Core/Inc/controller.h
+        software/TIM_DashBoard/Core/Inc/dma.h
+        software/TIM_DashBoard/Core/Inc/gpio.h
+        software/TIM_DashBoard/Core/Inc/main.h
+        software/TIM_DashBoard/Core/Inc/model.h
+        software/TIM_DashBoard/Core/Inc/stm32f1xx_hal_conf.h
+        software/TIM_DashBoard/Core/Inc/stm32f1xx_it.h
+        software/TIM_DashBoard/Core/Inc/tim.h
+        software/TIM_DashBoard/Core/Inc/user_can.h
+        software/TIM_DashBoard/Core/Inc/user_can_functs.h
+        software/TIM_DashBoard/Core/Inc/user_motor_control.h
+        software/TIM_DashBoard/Core/Inc/view.h
+        software/TIM_DashBoard/Core/Inc/wiper.h
+        software/TIM_DashBoard/Core/Src/adc.c
+        software/TIM_DashBoard/Core/Src/can.c
+        software/TIM_DashBoard/Core/Src/controller.c
+        software/TIM_DashBoard/Core/Src/dma.c
+        software/TIM_DashBoard/Core/Src/gpio.c
+        software/TIM_DashBoard/Core/Src/main.c
+        software/TIM_DashBoard/Core/Src/model.c
+        software/TIM_DashBoard/Core/Src/stm32f1xx_hal_msp.c
+        software/TIM_DashBoard/Core/Src/stm32f1xx_it.c
+        software/TIM_DashBoard/Core/Src/syscalls.c
+        software/TIM_DashBoard/Core/Src/sysmem.c
+        software/TIM_DashBoard/Core/Src/system_stm32f1xx.c
+        software/TIM_DashBoard/Core/Src/tim.c
+        software/TIM_DashBoard/Core/Src/user_can_functs.c
+        software/TIM_DashBoard/Core/Src/wiper.c
+        software/TIM_DashBoard/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h
+        software/TIM_DashBoard/Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f1xx.h
+        software/TIM_DashBoard/Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/cmsis_armcc.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/cmsis_armclang.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/cmsis_compiler.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/cmsis_gcc.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/cmsis_iccarm.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/cmsis_version.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/core_armv8mbl.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/core_armv8mml.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/core_cm0.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/core_cm0plus.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/core_cm1.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/core_cm23.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/core_cm3.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/core_cm33.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/core_cm4.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/core_cm7.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/core_sc000.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/core_sc300.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/mpu_armv7.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/mpu_armv8.h
+        software/TIM_DashBoard/Drivers/CMSIS/Include/tz_context.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_can.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc_ex.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.c
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc.c
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_adc_ex.c
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_can.c
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.c
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_dma.c
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_exti.c
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash.c
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_flash_ex.c
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.c
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio_ex.c
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_pwr.c
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.c
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc_ex.c
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.c
+        software/TIM_DashBoard/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.c)

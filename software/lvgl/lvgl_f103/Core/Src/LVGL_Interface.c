@@ -26,7 +26,7 @@ ili9341_t *display(void)
 void disp_driver_init(void)
 {
 	_lcd = ili9341_new(&hspi1, LCD_RST_GPIO_Port, LCD_RST_Pin, SPI_CS_GPIO_Port, SPI_CS_Pin,
-			  LCD_DC_GPIO_Port, LCD_DC_Pin, isoLandscape, NULL, 0, NULL, 0, itsNotSupported, itnNormalized);
+			  LCD_DC_GPIO_Port, LCD_DC_Pin, isoLandscapeFlip, NULL, 0, NULL, 0, itsNotSupported, itnNormalized);
 
 //	lv_color_t *disp_buf1 = (lv_color_t *) malloc(_lcd->screen_size.width * 60 * sizeof(lv_color_t));
 //	lv_color_t *disp_buf2 = (lv_color_t *) malloc(_lcd->screen_size.width * 60 * sizeof(lv_color_t));
