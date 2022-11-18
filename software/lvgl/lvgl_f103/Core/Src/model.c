@@ -22,8 +22,8 @@
 #include "gpio.h"
 
 //Application
-#include "user_can.h"
-#include "user_can_functs.h"
+#include "user_can.h"  //definitions
+#include "user_can_functs.h" //custom function
 #include "wiper.h"
 
 //Macro
@@ -56,15 +56,21 @@ extern TIM_HandleTypeDef htim1;
 extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim4;
+//to be deleted ?? 
 
 /* USER CODE BEGIN EV */
 
-uint8_t TxMotorCMD;
+static uint8_t TxMotorCMD;
 int16_t ADC_Values[2] = { 0 };
 volatile uint8_t enable_motor_CMD = 0;
 wiper_speed SpeedOfWiper = wiper_speed_0;
 
 extern uint8_t wiper_direction; //define in wiper.c & used in timer control in model.c
+
+//headlight related variable to somewhat debounce the command
+uint8_t headlight_status = 0;
+uint32_t prev_time_in =  0;
+uint32_t next_time_in =  0;
 
 // model : control GPIO (interrupts)
 
@@ -72,6 +78,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	// on interruption on a pin (ex : BUT_Pin or GPIO_PIN_0 or ((uint16_t)0x0001) )
 
 	if (GPIO_Pin == Accelerator_Pin) {
+
 		if (HAL_GPIO_ReadPin(Accelerator_GPIO_Port, Accelerator_Pin)
 				== GPIO_PIN_RESET) {
 			TxMotorCMD = 1;
@@ -86,57 +93,40 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	}
 
 	if (GPIO_Pin == HeadLight_Pin) {
-		uint8_t LightCMD = 0;
-		if (HAL_GPIO_ReadPin(HeadLight_GPIO_Port, HeadLight_Pin)
-				== GPIO_PIN_RESET) {
-			refresh_light(1U);
-			LightCMD = 1;
-			CAN_send_message(AT07_LIGHTS_CMD, AT07_LIGHTS_LENGTH, &LightCMD);
 
-		} else {
-			refresh_light(0U);
-			CAN_send_message(AT07_LIGHTS_CMD, AT07_LIGHTS_LENGTH, &LightCMD);
+		next_time_in = TIM1->CNT;
+		if(abs(next_time_in - prev_time_in) >= 7000){
+			prev_time_in = next_time_in;
+
+
+			headlight_status = 1^headlight_status;
+			refresh_light(headlight_status);
+			CAN_send_message( (AT07_LIGHTS_CMD) , AT07_LIGHTS_LENGTH, &headlight_status);
 
 		}
-	}
 
-	if ((GPIO_Pin == WiperStateA_Pin) || (GPIO_Pin == WiperStateB_Pin)) {
-
-		uint8_t AStateActivated = (HAL_GPIO_ReadPin(WiperStateA_GPIO_Port,
-		WiperStateA_Pin) == GPIO_PIN_SET) ? 1 : 0;
-
-		uint8_t BStateActivated = (HAL_GPIO_ReadPin(WiperStateB_GPIO_Port,
-		WiperStateB_Pin) == GPIO_PIN_SET) ? 1 : 0;
-
-		if (AStateActivated == 1 && BStateActivated == 0) { //wiper off
-			wiper_stop();
-		} else if (AStateActivated == 1 && BStateActivated == 1) { //wiper half speed
-			wiper_start(wiper_speed_1);
-		} else if (AStateActivated == 0 && BStateActivated == 1) { //wiper full speed
-			wiper_start(wiper_speed_3);
-		} else { //wiper off
-			wiper_stop();
-		}
 	}
 
 	if ((GPIO_Pin == Left_TurnSignal_Pin)
 			|| (GPIO_Pin == Right_TurnSignal_Pin)) {
-		uint16_t turning_signal = 0;
 
-		uint8_t RightPressed = (HAL_GPIO_ReadPin(Right_TurnSignal_GPIO_Port,
-		Right_TurnSignal_Pin) == GPIO_PIN_RESET) ? 1 : 0;
+		uint8_t turning_signal = 0;
 
-		uint8_t LeftPressed = (HAL_GPIO_ReadPin(Left_TurnSignal_GPIO_Port,
-		Left_TurnSignal_Pin) == GPIO_PIN_RESET) ? 1 : 0;
+		uint8_t RightPressed = HAL_GPIO_ReadPin(Right_TurnSignal_GPIO_Port,
+		Right_TurnSignal_Pin) == GPIO_PIN_RESET ;
 
-		if (RightPressed == 1 && LeftPressed == 1) {
-			turning_signal = 8;
-		} else if ((RightPressed == 1 && LeftPressed == 0)) {
+		uint8_t LeftPressed = HAL_GPIO_ReadPin(Left_TurnSignal_GPIO_Port,
+		Left_TurnSignal_Pin) == GPIO_PIN_RESET ;
+
+		if ((RightPressed == 1 && LeftPressed == 0)) {
 			turning_signal = 2;
+			CAN_send_message(AT07_BLINKERS_CMD, AT07_BLINKERS_LENGTH,&turning_signal);
 		} else if ((RightPressed == 0 && LeftPressed == 1)) {
 			turning_signal = 4;
+			CAN_send_message(AT07_BLINKERS_CMD, AT07_BLINKERS_LENGTH,&LeftPressed);
 		} else {
 			turning_signal = 0;
+			CAN_send_message(AT07_BLINKERS_CMD, AT07_BLINKERS_LENGTH,&turning_signal);
 		}
 
 		refresh_turning_signals(turning_signal);
@@ -145,32 +135,32 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	if ((GPIO_Pin == WiperStateA_Pin) || (GPIO_Pin == WiperStateB_Pin)) {
 		//uint16_t wiper_state = 0;
 
-		uint8_t WiperStateAPressed = (HAL_GPIO_ReadPin(WiperStateA_GPIO_Port,
-		WiperStateA_Pin) == GPIO_PIN_RESET) ? 1 : 0;
+		uint8_t WiperStateAPressed = HAL_GPIO_ReadPin(WiperStateA_GPIO_Port,
+		WiperStateA_Pin) == GPIO_PIN_RESET;
 
-		uint8_t WiperStateBPressed = (HAL_GPIO_ReadPin(WiperStateB_GPIO_Port,
-		WiperStateB_Pin) == GPIO_PIN_RESET) ? 1 : 0;
+		uint8_t WiperStateBPressed = HAL_GPIO_ReadPin(WiperStateB_GPIO_Port,
+		WiperStateB_Pin) == GPIO_PIN_RESET;
 
 		if ((WiperStateAPressed == 1 && WiperStateBPressed == 0)) {
-			wiper_start(1);
+			wiper_start(wiper_speed_1);
 		} else if ((WiperStateAPressed == 0 && WiperStateBPressed == 1)) {
-			wiper_start(2);
+			wiper_start(wiper_speed_3);
 		} else {
 			wiper_stop();
 		}
-	}
+	}//update function to set speed on wiper.h/c
 }
 
 // model : receive CAN messages
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 
 	uint8_t RxData[8] = { 0 };
-	CAN_RxHeaderTypeDef pCAN_RxHeader;  //move from general to local
+	CAN_RxHeaderTypeDef pCAN_RxHeader;  
 
 	HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &pCAN_RxHeader, RxData);
 
 	//speed
-	if ((pCAN_RxHeader.ExtId) == 0x8060140) {
+	if ((pCAN_RxHeader.ExtId) == 0x8060140) { //r eplace by define value 
 		int ShowedSpeed = (RxData[3] + (RxData[2] << 8)) / 10;
 		refresh_speed(ShowedSpeed);
 	}
@@ -209,7 +199,7 @@ uint16_t AdcToCurrentcmd(uint16_t ADC_Value) {
 
 void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef *hadc) {
 	if (abs(ADC_Values[1]-ADC_Values[0]) > 200) {
-		//change the equation into a table
+
 		uint16_t currentCommand = AdcToCurrentcmd(ADC_Values[0]);
 
 		uint8_t TxMotorFRW[2] = { ((currentCommand * 2000) >> 8) & 0xFF,
@@ -253,10 +243,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	}
 }
 
-// model : send CAN messages
+// model : CAN module
+
+// model : control wiper
 
 // model : control GPIO (write/read)
 
-// model : control wiper
 //=====================================> migrating wiper code to model to be tried ????
 

@@ -76,6 +76,9 @@ void Error_Handler(void);
 #define WiperStateA_Pin GPIO_PIN_14
 #define WiperStateA_GPIO_Port GPIOB
 #define WiperStateA_EXTI_IRQn EXTI15_10_IRQn
+#define BreakPedal_Pin GPIO_PIN_8
+#define BreakPedal_GPIO_Port GPIOC
+#define BreakPedal_EXTI_IRQn EXTI9_5_IRQn
 #define CAN_STBY_Pin GPIO_PIN_9
 #define CAN_STBY_GPIO_Port GPIOA
 #define LED_Pin GPIO_PIN_12
@@ -83,12 +86,12 @@ void Error_Handler(void);
 #define Accelerator_Pin GPIO_PIN_2
 #define Accelerator_GPIO_Port GPIOD
 #define Accelerator_EXTI_IRQn EXTI2_IRQn
-#define Right_TurnSignal_Pin GPIO_PIN_5
-#define Right_TurnSignal_GPIO_Port GPIOB
-#define Right_TurnSignal_EXTI_IRQn EXTI9_5_IRQn
-#define Left_TurnSignal_Pin GPIO_PIN_6
+#define Left_TurnSignal_Pin GPIO_PIN_5
 #define Left_TurnSignal_GPIO_Port GPIOB
 #define Left_TurnSignal_EXTI_IRQn EXTI9_5_IRQn
+#define Right_TurnSignal_Pin GPIO_PIN_6
+#define Right_TurnSignal_GPIO_Port GPIOB
+#define Right_TurnSignal_EXTI_IRQn EXTI9_5_IRQn
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

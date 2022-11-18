@@ -38,7 +38,7 @@ void refresh_turning_signals(uint16_t turning_signals) { // 3 specific values
 
 	view_toggle_TL(TL_Cmd);
 
-}
+}//this function shall receive state of button to turn signal
 void refresh_command(uint16_t command){
 	//current command for the motor
 	view_setCMD(command);
